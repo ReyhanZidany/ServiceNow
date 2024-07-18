@@ -11,6 +11,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/tickets', function () {
+    return view('tickets');
+});
+
         
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -19,4 +23,5 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/tickets', [AuthController::class, 'ticketlist'])->name('tickets');
 
