@@ -16,7 +16,7 @@
                 <nav class="space-x-4">
                     <a href="{{ route('home') }}" class="text-gray-600 hover:text-gray-900">Home</a>
                     <a href="{{ route('tickets') }}" class="text-gray-600 hover:text-gray-900">Tickets</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900">History</a>
+                    <a href="{{ route('history') }}" class="text-gray-600 hover:text-gray-900">History</a>
                     <a href="{{ route('logout') }}" class="text-gray-600 hover:text-gray-900">Logout</a>
                 </nav>
             </div>
