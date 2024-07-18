@@ -11,7 +11,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+        
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'processlogin'])->name('login.process');
-Route::view('/home', 'home')->name('home');
+Route::get('/home', [AuthController::class, 'home'])->name('home');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

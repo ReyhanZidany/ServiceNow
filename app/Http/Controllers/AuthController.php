@@ -13,10 +13,21 @@ class AuthController extends Controller
     {
         $credentials = $request->only('username', 'password');
 
-        if ($credentials['username'] === 'pic' && $credentials['password'] === '1234') {
+        if ($credentials['username'] === 'pic'|| $credentials['username'] === 'servicedesk' && $credentials['password'] === '1234') {
             return redirect()->route('home');
         }
 
-        return redirect()->back()->withErrors(['message' => 'Invalid credentials']);
+        return back()->withErrors(['loginError' => 'Invalid username or password.']);
+    }
+
+    public function home()
+    {
+        return view('home');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
