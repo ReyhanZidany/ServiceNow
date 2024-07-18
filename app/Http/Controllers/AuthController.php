@@ -40,4 +40,9 @@ class AuthController extends Controller
     {
         return view('tickets');
     }
+
+    public function tickethistory()
+    {
+        return view('history');
+    }
 }
