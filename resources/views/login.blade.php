@@ -73,7 +73,7 @@
         
         <form method="POST" action="{{ route('login.process') }}">
             @csrf
-            <input type="text" name="username" placeholder="Username" class="form-input" required>
+            <input type="text" name="email" placeholder="Email" class="form-input" required>
             <input type="password" name="password" placeholder="Password" class="form-input" required>
             <button type="submit" class="form-button">Login</button>
         </form>

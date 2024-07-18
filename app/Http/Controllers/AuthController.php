@@ -5,28 +5,54 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Ticket;
+use Carbon\Carbon;
 
 
 class AuthController extends Controller
 {
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
-        return view('login'); // Sesuaikan dengan nama view yang Anda gunakan
+        $ticket = Ticket::create([
+            'title' => 'payaa',
+            'description' => 'hmmm',
+            'user_id' => rand(2,3),
+            'createdat' => Carbon::now(),
+            'solvedat' => Carbon::now(),
+            'solutiondesc' => 'tidak ada solusi',
+        ]);
+        return view('login'); 
     }
 
     public function processlogin(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+      
+        $credentials = $request->only('email', 'password');
+        
+        (Auth::attempt($credentials));
 
-        if ($credentials['username'] === 'pic'|| $credentials['username'] === 'servicedesk' && $credentials['password'] === '1234') {
+        if (Auth::attempt($credentials)) {
             return redirect()->route('home');
-        }
-
-        return back()->withErrors(['loginError' => 'Invalid username or password.']);
+        }else {
+            return back()->withErrors(['loginError' => 'Invalid username or password.']);
+        } 
+    
     }
 
     public function home()
     {
+    
+        $user = Auth::user();
+        // dd($user);
+        $role = Auth::user()->role;
+
+
+        if ($role == 'servicedesk'){
+            return (Ticket::all());
+        } else {
+            return (Ticket::where('user_id', Auth::user()->id)->get());
+        }
+
         return view('home');
     }
 
@@ -45,4 +71,5 @@ class AuthController extends Controller
     {
         return view('history');
     }
+
 }
