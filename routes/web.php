@@ -15,6 +15,8 @@ Route::get('/home', function () {
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'processlogin'])->name('login.process');
-Route::get('/home', [AuthController::class, 'home'])->name('home');
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function showLoginForm()
+    {
+        return view('login'); // Sesuaikan dengan nama view yang Anda gunakan
+    }
+
     public function processlogin(Request $request)
     {
         $credentials = $request->only('username', 'password');

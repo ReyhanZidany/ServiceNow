@@ -11,7 +11,7 @@
         <div class="container mx-auto flex items-center justify-between py-4 px-6">
             <div class="flex items-center">
                 <div class="mr-6">
-                    <img src="img/logotpk.png" alt="Logo IPC" class="h-16">
+                    <img src="img/logotpk.png" alt="Logo IPC" class="h-14">
                 </div>
                 <nav class="space-x-4">
                     <a href="#" class="text-gray-600 hover:text-gray-900">Home</a>
