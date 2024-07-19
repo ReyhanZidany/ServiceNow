@@ -47,12 +47,6 @@ class AuthController extends Controller
         $role = Auth::user()->role;
 
 
-        if ($role == 'servicedesk'){
-            return (Ticket::all());
-        } else {
-            return (Ticket::where('user_id', Auth::user()->id)->get());
-        }
-
         return view('home');
     }
 
@@ -64,7 +58,18 @@ class AuthController extends Controller
 
     public function ticketlist()
     {
-        return view('tickets');
+
+        $role = Auth::user()->role; 
+        // Auth = ambil data yang sudah login
+    
+        // if ($role == 'servicedesk'){
+        //     return (Ticket::all());
+        // } else {
+        //     return (Ticket::where('user_id', Auth::user()->id)->get());
+        // }
+        return view('tickets', ['data' => Ticket::all()]);
+
+        // return view('tickets');
     }
 
     public function tickethistory()

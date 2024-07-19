@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <style>
         body {
             background-image: url('{{ asset('img/ipclands.jpg') }}');
@@ -26,8 +27,9 @@
             text-align: center;
         }
         .logo {
-            max-width: 100px;
+            max-width: 150px;
             margin-bottom: 20px;
+            justify-content: center;
         }
         .form-input {
             width: 100%;
@@ -64,7 +66,7 @@
 </head>
 <body>
     <div class="login-container">
-        <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="logo">
+        <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="logo mx-auto">
         <h2 class="text-2xl font-semibold text-gray-900 mb-4">Login</h2>
         
         @if(session('error'))

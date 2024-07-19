@@ -19,13 +19,10 @@ use App\Http\Controllers\AuthController;
 //     return view('history');
 // });        
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'processlogin'])->name('login.process');
 Route::get('/home', [AuthController::class, 'home'])->name('home');
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('create');
-// Route::get('/home', function () {
-//     return view('home');
-// })->name('home');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('ada login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/tickets', [AuthController::class, 'ticketlist'])->name('tickets');
 Route::get('/history', [AuthController::class, 'tickethistory'])->name('history');
