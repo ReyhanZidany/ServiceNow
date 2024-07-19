@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <title>Home</title>
     <style>
         table tr:nth-child(odd) {
