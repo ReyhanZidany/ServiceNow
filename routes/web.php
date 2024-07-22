@@ -17,8 +17,10 @@ use App\Http\Controllers\AuthController;
 
 // Route::get('/history', function () {
 //     return view('history');
-// });        
+// });    
 
+Route::get('/tickets/create', [AuthController::class, 'createTicket'])->name('tickets.create');
+Route::post('/tickets', [AuthController::class, 'storeTicket'])->name('tickets.store');
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'processlogin'])->name('login.process');
 Route::get('/home', [AuthController::class, 'home'])->name('home');

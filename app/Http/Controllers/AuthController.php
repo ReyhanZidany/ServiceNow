@@ -50,6 +50,29 @@ class AuthController extends Controller
         return view('home');
     }
 
+    public function createTicket()
+    {
+        return view('add_ticket');
+    }
+
+    public function storeTicket(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+    ]);
+
+    Ticket::create([
+        'title' => $validated['title'],
+        'description' => $validated['description'],
+        'user_id' => Auth::id(), // Assuming you want to associate the ticket with the currently logged-in user
+        'createdat' => Carbon::now(),
+        'solvedat' => null, // Set this to null or a default value if not applicable
+        'solutiondesc' => null, // Set this to null or a default value if not applicable
+    ]);
+
+    return redirect()->route('tickets')->with('success', 'Ticket created successfully!');
+}
 
     public function ticketlist()
     {
@@ -63,14 +86,14 @@ class AuthController extends Controller
         //     return (Ticket::where('user_id', Auth::user()->id)->get());
         // }
        
-        $ticket = Ticket::create([
-            'title' => 'kungkingkang',
-            'description' => 'hmmm',
-            'user_id' => rand(2,3),
-            'createdat' => Carbon::now(),
-            'solvedat' => Carbon::now(),
-            'solutiondesc' => 'tidak ada solusi',
-        ]);
+        // $ticket = Ticket::create([
+        //     'title' => 'kungkingkang',
+        //     'description' => 'hmmm',
+        //     'user_id' => rand(2,3),
+        //     'createdat' => Carbon::now(),
+        //     'solvedat' => Carbon::now(),
+        //     'solutiondesc' => 'tidak ada solusi',
+        // ]);
 
         return view('tickets', ['data' => Ticket::all()]);
 
