@@ -26,3 +26,4 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('ada login'
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/tickets', [AuthController::class, 'ticketlist'])->name('tickets');
 Route::get('/history', [AuthController::class, 'tickethistory'])->name('history');
+Route::get('/home', [AuthController::class, 'index'])->name('home');

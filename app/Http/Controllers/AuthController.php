@@ -63,18 +63,24 @@ class AuthController extends Controller
         //     return (Ticket::where('user_id', Auth::user()->id)->get());
         // }
        
-        // $ticket = Ticket::create([
-        //     'title' => 'kungkingkang',
-        //     'description' => 'hmmm',
-        //     'user_id' => rand(2,3),
-        //     'createdat' => Carbon::now(),
-        //     'solvedat' => Carbon::now(),
-        //     'solutiondesc' => 'tidak ada solusi',
-        // ]);
+        $ticket = Ticket::create([
+            'title' => 'kungkingkang',
+            'description' => 'hmmm',
+            'user_id' => rand(2,3),
+            'createdat' => Carbon::now(),
+            'solvedat' => Carbon::now(),
+            'solutiondesc' => 'tidak ada solusi',
+        ]);
 
         return view('tickets', ['data' => Ticket::all()]);
 
         // return view('tickets');
+    }
+
+    public function index()
+    {
+        $totalTickets = Ticket::count();
+        return view('home', compact('totalTickets'));
     }
 
     public function tickethistory()
