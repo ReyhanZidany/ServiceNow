@@ -56,7 +56,7 @@ class AuthController extends Controller
     }
 
     public function storeTicket(Request $request)
-{
+    {
     $validated = $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
@@ -72,7 +72,7 @@ class AuthController extends Controller
     ]);
 
     return redirect()->route('tickets')->with('success', 'Ticket created successfully!');
-}
+    }
 
     public function ticketlist()
     {
