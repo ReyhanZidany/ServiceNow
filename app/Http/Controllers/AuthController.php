@@ -13,14 +13,14 @@ class AuthController extends Controller
 {
     public function showLoginForm(Request $request)
     {
-        $ticket = Ticket::create([
-            'title' => 'payaa',
-            'description' => 'hmmm',
-            'user_id' => rand(2,3),
-            'createdat' => Carbon::now(),
-            'solvedat' => Carbon::now(),
-            'solutiondesc' => 'tidak ada solusi',
-        ]);
+        // $ticket = Ticket::create([
+        //     'title' => 'payaa',
+        //     'description' => 'hmmm',
+        //     'user_id' => rand(2,3),
+        //     'createdat' => Carbon::now(),
+        //     'solvedat' => Carbon::now(),
+        //     'solutiondesc' => 'tidak ada solusi',
+        // ]);
         return view('login'); 
     }
 
@@ -30,6 +30,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         
         (Auth::attempt($credentials));
+        
 
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
@@ -67,6 +68,15 @@ class AuthController extends Controller
         // } else {
         //     return (Ticket::where('user_id', Auth::user()->id)->get());
         // }
+        $ticket = Ticket::create([
+            'title' => 'payaa',
+            'description' => 'hmmm',
+            'user_id' => rand(2,3),
+            'createdat' => Carbon::now(),
+            'solvedat' => Carbon::now(),
+            'solutiondesc' => 'tidak ada solusi',
+        ]);
+        
         return view('tickets', ['data' => Ticket::all()]);
 
         // return view('tickets');

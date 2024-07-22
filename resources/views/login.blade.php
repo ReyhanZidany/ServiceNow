@@ -67,7 +67,7 @@
 <body>
     <div class="login-container">
         <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="logo mx-auto">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Login</h2>
+        <h2 class="text-xl font-semibold text-gray-500 mb-3">LOGIN</h2></h2>
         
         @if(session('error'))
             <p class="error">{{ session('error') }}</p>
