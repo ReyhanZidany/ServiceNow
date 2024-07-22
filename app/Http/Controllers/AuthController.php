@@ -44,18 +44,12 @@ class AuthController extends Controller
     {
     
         $user = Auth::user();
-        // dd($user);
         $role = Auth::user()->role;
 
 
         return view('home');
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('login');
-    }
 
     public function ticketlist()
     {
@@ -68,15 +62,16 @@ class AuthController extends Controller
         // } else {
         //     return (Ticket::where('user_id', Auth::user()->id)->get());
         // }
-        $ticket = Ticket::create([
-            'title' => 'payaa',
-            'description' => 'hmmm',
-            'user_id' => rand(2,3),
-            'createdat' => Carbon::now(),
-            'solvedat' => Carbon::now(),
-            'solutiondesc' => 'tidak ada solusi',
-        ]);
-        
+       
+        // $ticket = Ticket::create([
+        //     'title' => 'kungkingkang',
+        //     'description' => 'hmmm',
+        //     'user_id' => rand(2,3),
+        //     'createdat' => Carbon::now(),
+        //     'solvedat' => Carbon::now(),
+        //     'solutiondesc' => 'tidak ada solusi',
+        // ]);
+
         return view('tickets', ['data' => Ticket::all()]);
 
         // return view('tickets');
@@ -85,6 +80,12 @@ class AuthController extends Controller
     public function tickethistory()
     {
         return view('history');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
 }

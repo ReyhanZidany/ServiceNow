@@ -5,18 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <title>Home</title>
+
     <style>
-        table tr:nth-child(odd) {
-    background-color: #f8c291;
-}
-
-table tr:nth-child(even) {
-    background-color: #82ccdd;
-}
-
-    </style>
+        table {
+            width: calc(100%);
+        }
+        td {
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+        .odd {
+            background-color: #e1e1e1;
+        }
+        .even {
+            background-color: #f2f2f2;
+        }
+        
+    </style>    
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body>
     <header class="bg-white shadow">
         <div class="container mx-auto flex items-center justify-between py-4 px-6">
@@ -33,31 +41,42 @@ table tr:nth-child(even) {
             </div>
         </div>
     </header>
+
     <main>
-        <table border="1">
-           @foreach ($data as $item)
-           @endforeach
-        </table>
-        <div class="container mx-auto mt-8">
+        <div class="container mx-auto mt-8 px-4">
             <section class="text-center">
                 <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to Tickets</h1>
-                <p class="text-lg text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique mattis urna, et iaculis dolor mollis vel.</p>
-                <table>
-                    @foreach ($data as $item)
-        <tr style="background-color: {{ $loop->iteration % 2 == 0 ? '#f8c291' : '#82ccdd' }}; margin-bottom: 5px;">
-            <td style="padding: 10px; margin-bottom: 5px;">
-                {{ $item->title }}
-            </td>
-        </tr>
-    @endforeach
-                </table>
-                
-            </section>
-            <section class="mt-8 bg-white shadow rounded-lg p-6">
-                <!-- Isi konten dashboard -->
+                <p class="text-lg text-gray-600 mb-4">LIST TICKET.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full mx-auto">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2 border">Title</th>
+                            <th class="px-4 py-2 border">Description</th>
+                            <th class="px-4 py-2 border">User ID</th>
+                            <th class="px-4 py-2 border">Created At</th>
+                            <th class="px-4 py-2 border">Solved At</th>
+                            <th class="px-4 py-2 border">Solution Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $item)
+                            <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
+                                <td class="px-4 py-2">{{ $item->title }}</td>
+                            <td class="px-4 py-2">{{ $item->description }}</td>
+                            <td class="px-4 py-2">{{ $item->user_id }}</td>
+                            <td class="px-4 py-2">{{ $item->createdat }}</td>
+                            <td class="px-4 py-2">{{ $item->solvedat }}</td>
+                            <td class="px-4 py-2">{{ $item->solutiondesc }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     </main>
+
 </body>
 </html>
 
