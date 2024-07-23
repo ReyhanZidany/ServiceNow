@@ -103,7 +103,9 @@
             <section class="text-center">
                 <div class="flex justify-between items-center mb-4">
                     <h1 class="text-4xl font-bold text-gray-900">List Tickets</h1>
+                    @if(Auth::user()->role === 'servicedesk')
                     <a href="{{ route('tickets.create') }}" class="border-2 border-blue-500 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Add Ticket</a>
+                @endif
                 </div>
                 <div class="overflow-x-auto mt-4">
                     <table class="w-full mx-auto">
