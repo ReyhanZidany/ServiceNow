@@ -102,7 +102,14 @@ class AuthController extends Controller
 
     public function index()
     {
-        $totalTickets = Ticket::count();
+        $user = Auth::user();
+
+        if ($user->role === 'servicedesk') {
+            $totalTickets = Ticket::count();
+        } else {
+            $totalTickets = Ticket::where('user_id', $user->id)->count();
+        }
+
         return view('home', compact('totalTickets'));
     }
 
