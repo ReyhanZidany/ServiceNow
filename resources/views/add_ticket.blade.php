@@ -96,6 +96,15 @@
                         <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
                         <textarea id="description" name="description" class="border border-gray-300 p-2 w-full rounded" rows="4" required></textarea>
                     </div>
+                    <div class="mb-4">
+                        <label for="user_id" class="block text-gray-700 text-sm font-bold mb-2">Assign to User</label>
+                        <select id="user_id" name="user_id" class="border border-gray-300 p-2 w-full rounded" required>
+                            <option value="">Select User</option>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Add Ticket</button>
                 </form>
             </section>
