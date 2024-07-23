@@ -102,7 +102,7 @@
             <div class="profile-dropdown" id="profileDropdown">
                 <button class="flex items-center text-gray-600 hover:text-gray-900 focus:outline-none profile-button" onclick="toggleDropdown()">
                     <span>{{ Auth::user()->name }}</span>
-                    <img src="{{ asset('img/psd.png') }}" alt="Profile Picture" class="h-10 w-10 rounded-full ml-2">
+                    <img src="{{ asset('img/ticketwave.png') }}" alt="Profile Picture" class="h-10 w-10 rounded-full ml-2">
                 </button>
                 <div class="profile-dropdown-content">
                     <a href="{{ route('logout') }}">Logout</a>
