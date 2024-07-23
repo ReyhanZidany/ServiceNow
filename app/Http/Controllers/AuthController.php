@@ -58,9 +58,46 @@ class AuthController extends Controller
         return redirect()->route('tickets')->with('success', 'Ticket created successfully!');
     }
 
+    public function editTicket($id)
+    {
+        $ticket = Ticket::findOrFail($id);
+        return view('edit_ticket', compact('ticket'));
+    }
+
+    public function updateTicket(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'solution' => 'required|string',
+        ]);
+
+        $ticket = Ticket::findOrFail($id);
+        $ticket->solutiondesc = $validated['solution'];
+        $ticket->solvedat = Carbon::now();
+        $ticket->save();
+
+        // Move to history
+        $ticket->delete();
+
+        return redirect()->route('history')->with('success', 'Ticket updated and moved to history!');
+    }
+
     public function ticketlist()
     {
-        return view('tickets', ['data' => Ticket::all()]);
+        $role = Auth::user()->role;
+        // Fetch tickets based on user role
+        if ($role == 'servicedesk'){
+            $tickets = Ticket::all();
+        } else {
+            $tickets = Ticket::where('user_id', Auth::user()->id)->get();
+        }
+        
+        return view('tickets', ['data' => $tickets]);
+    }
+
+    public function tickethistory()
+    {
+        $history = Ticket::onlyTrashed()->get(); // Assuming you're using soft deletes
+        return view('history', ['data' => $history]);
     }
 
     public function index()
@@ -69,10 +106,6 @@ class AuthController extends Controller
         return view('home', compact('totalTickets'));
     }
 
-    public function tickethistory()
-    {
-        return view('history');
-    }
 
     public function logout()
     {
