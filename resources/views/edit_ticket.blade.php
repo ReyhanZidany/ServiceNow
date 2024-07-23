@@ -7,6 +7,56 @@
     <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <title>Edit Ticket</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .profile-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .profile-dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .profile-dropdown.open .profile-dropdown-content {
+            display: block;
+        }
+    </style>
+    </style>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("profileDropdown");
+            dropdown.classList.toggle("open");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-button')) {
+                var dropdowns = document.getElementsByClassName("profile-dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('open')) {
+                        openDropdown.classList.remove('open');
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <header class="bg-white shadow">
@@ -31,6 +81,7 @@
                 </div>
             </div>
         </div>
+        
     </header>
 
     <main>
