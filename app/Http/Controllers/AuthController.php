@@ -103,14 +103,16 @@ class AuthController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'servicedesk') {
-            $totalTickets = Ticket::count();
-            $solvedTickets = Ticket::onlyTrashed()->count(); // Count soft deleted tickets
+            $unsolvedTickets = Ticket::count();
+            $solvedTickets = Ticket::onlyTrashed()->count(); 
         } else {
-            $totalTickets = Ticket::where('user_id', $user->id)->count();
-            $solvedTickets = Ticket::where('user_id', $user->id)->onlyTrashed()->count(); // Count soft deleted tickets for the user
+            $unsolvedTickets = Ticket::where('user_id', $user->id)->count();
+            $solvedTickets = Ticket::where('user_id', $user->id)->onlyTrashed()->count(); 
         }
 
-        return view('home', compact('totalTickets', 'solvedTickets'));
+        $totalTickets = $unsolvedTickets + $solvedTickets;
+
+        return view('home', compact('totalTickets','unsolvedTickets', 'solvedTickets'));
     }
 
     public function logout()

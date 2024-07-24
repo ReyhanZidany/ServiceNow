@@ -29,17 +29,22 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
             text-align: center;
         }
-        .total-tickets {
+        .unsolved-tickets {
             font-size: 70px;
             font-weight: bold;
             color: #ea1212;
             margin-bottom: 10px;
-            
         }
         .solved-tickets {
             font-size: 70px;
             font-weight: bold;
             color: #4a90e2;
+            margin-bottom: 10px;
+        }
+        .total-tickets {
+            font-size: 70px;
+            font-weight: bold;
+            color: #28a745; /* Green color for total tickets */
             margin-bottom: 10px;
         }
         .navbar {
@@ -125,13 +130,16 @@
     </header>
     <main class="home-container">
         <div class="ticket">
-            <h1 class="total-tickets">{{ $totalTickets }}</h1>
-            <p>Total Tickets</p>
-            </div>
+            <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
+            <p>Tickets Unresolved</p>
+        </div>
         <div class="ticket">
             <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
             <p>Tickets Solved</p>
         </div>
+        <div class="ticket">
+            <h1 class="total-tickets">{{ $totalTickets }}</h1> <!-- Updated to use the new variable -->
+            <p>Total Tickets</p>
         </div>
     </main>
 </body>
