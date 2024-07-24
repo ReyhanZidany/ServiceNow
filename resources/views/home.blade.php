@@ -14,7 +14,7 @@
         .home-container {
             display: flex;
             flex-direction: column; /* Stack items vertically */
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center; /* Center items horizontally */
             height: calc(100vh - 64px); /* Adjust for navbar height */
             padding-top: 40px; /* Add padding to move content down */
