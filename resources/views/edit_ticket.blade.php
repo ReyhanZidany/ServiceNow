@@ -1,11 +1,10 @@
-<!-- resources/views/edit_ticket.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
-    <title>Edit Ticket</title>
+    <title>Solve Ticket</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .navbar a {
@@ -38,7 +37,6 @@
         .profile-dropdown.open .profile-dropdown-content {
             display: block;
         }
-    </style>
     </style>
     <script>
         function toggleDropdown() {
@@ -81,19 +79,34 @@
                 </div>
             </div>
         </div>
-        
     </header>
 
     <main>
         <div class="container mx-auto mt-8 px-4">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Add Solution</h2>
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Solve Ticket</h2>
             <form action="{{ route('tickets.update', $ticket->id) }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
                 @csrf
                 @method('PUT')
+
+                <!-- Ticket Title -->
                 <div class="mb-4">
-                    <label for="solutiondesc" class="block text-gray-700 text-sm font-bold mb-2">Solution Description</label>
-                    <textarea name="solution" id="solution" class="w-full border-gray-300 rounded-lg" required>{{ old('solution', $ticket->solutiondesc) }}</textarea>
+                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                    <input type="text" name="title" id="title" class="w-full border-2 border-gray-300 rounded-lg p-3 bg-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ old('title', $ticket->title) }}" readonly>
                 </div>
+
+                <!-- Ticket Description -->
+                <div class="mb-4">
+                    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                    <textarea name="description" id="description" class="w-full border-2 border-gray-300 rounded-lg p-3 bg-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>{{ old('description', $ticket->description) }}</textarea>
+                </div>
+
+                <!-- Solution Description -->
+                <div class="mb-4">
+                    <label for="solution" class="block text-gray-700 text-sm font-bold mb-2">Solution Description</label>
+                    <textarea name="solution" id="solution" class="w-full border-2 border-gray-300 rounded-lg p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>{{ old('solution', $ticket->solution) }}</textarea>
+                </div>
+
+
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>
             </form>
         </div>
