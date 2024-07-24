@@ -58,10 +58,10 @@
 </head>
 <body>
     <header class="bg-white shadow">
-        <div class="container mx-auto flex items-center justify-between py-4 px-6">
+        <div class="container mx-auto flex items-center justify-between py-2 px-6">
             <div class="flex items-center">
                 <div class="mr-6">
-                    <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="h-14">
+                    <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="h-12">
                 </div>
                 <nav class="space-x-4">
                     <a href="{{ route('home') }}" class="text-gray-600 hover:text-gray-900">Home</a>

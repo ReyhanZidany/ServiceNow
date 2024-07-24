@@ -110,10 +110,10 @@
 </head>
 <body>
     <header class="bg-white shadow">
-        <div class="container mx-auto flex items-center justify-between py-4 px-6">
+        <div class="container mx-auto flex items-center justify-between py-2 px-6">
             <div class="flex items-center">
                 <div class="mr-6">
-                    <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="h-14">
+                    <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="h-12">
                 </div>
                 <nav class="space-x-4">
                     <a href="#" class="text-gray-600 hover:text-gray-900">Home</a>
@@ -124,7 +124,7 @@
             <div class="profile-dropdown" id="profileDropdown">
                 <button class="flex items-center text-gray-600 hover:text-gray-900 focus:outline-none profile-button" onclick="toggleDropdown()">
                     <span>{{ Auth::user()->name }}</span>
-                    <img src="{{ asset('img/ticketwave.png') }}" alt="Profile Picture" class="h-10 w-10 rounded-full ml-2">
+                    <img src="{{ asset('img/ticketwave.png') }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
                 </button>
                 <div class="profile-dropdown-content">
                     <a href="{{ route('logout') }}">Logout</a>
