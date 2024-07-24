@@ -92,7 +92,7 @@
                 @method('PUT')
                 <div class="mb-4">
                     <label for="solutiondesc" class="block text-gray-700 text-sm font-bold mb-2">Solution Description</label>
-                    <textarea id="solutiondesc" name="solutiondesc" class="border border-gray-300 p-2 w-full rounded" rows="4" required></textarea>
+                    <textarea name="solution" id="solution" class="w-full border-gray-300 rounded-lg" required>{{ old('solution', $ticket->solutiondesc) }}</textarea>
                 </div>
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>
             </form>

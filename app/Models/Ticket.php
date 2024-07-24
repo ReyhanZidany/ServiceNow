@@ -21,6 +21,10 @@ class Ticket extends Model
         'createdat',
         'solvedat',
         'solutiondesc',
+        'status',
     ];
+    
+    protected $dates = ['createdat', 'solvedat', 'deleted_at'];
+
 }
 

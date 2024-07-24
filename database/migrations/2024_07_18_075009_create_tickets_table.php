@@ -19,6 +19,9 @@ return new class extends Migration
             $table->timestamp('createdat');
             $table->timestamp('solvedat')->nullable();
             $table->string('solutiondesc')->nullable();
+            $table->string('status')->default('open');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

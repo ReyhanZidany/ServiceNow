@@ -82,7 +82,32 @@
                 <p class="text-lg text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique mattis urna, et iaculis dolor mollis vel.</p>
             </section>
             <section class="mt-8 bg-white shadow rounded-lg p-6">
-                <!-- Isi konten dashboard -->
+                <div class="overflow-x-auto mt-4">
+                    <table class="w-full mx-auto">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2 border">Title</th>
+                                <th class="px-4 py-2 border">Description</th>
+                                <th class="px-4 py-2 border">User ID</th>
+                                <th class="px-4 py-2 border">Created At</th>
+                                <th class="px-4 py-2 border">Solved At</th>
+                                <th class="px-4 py-2 border">Solution Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $item)
+                                <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
+                                    <td class="px-4 py-2">{{ $item->title }}</td>
+                                    <td class="px-4 py-2">{{ $item->description }}</td>
+                                    <td class="px-4 py-2">{{ $item->user_id }}</td>
+                                    <td class="px-4 py-2">{{ $item->createdat }}</td>
+                                    <td class="px-4 py-2">{{ $item->solvedat }}</td>
+                                    <td class="px-4 py-2">{{ $item->solutiondesc }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     </main>

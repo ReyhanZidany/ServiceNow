@@ -33,7 +33,6 @@ class AuthController extends Controller
 
     public function createTicket()
     {
-        // Fetch users excluding the ones with the role "servicedesk"
         $users = User::where('role', '<>', 'servicedesk')->get();
         return view('add_ticket', compact('users'));
     }
@@ -43,13 +42,13 @@ class AuthController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'user_id' => 'required|exists:users,id', // Add validation for user_id
+            'user_id' => 'required|exists:users,id',
         ]);
 
         Ticket::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'user_id' => $validated['user_id'], // Use selected user ID
+            'user_id' => $validated['user_id'],
             'createdat' => Carbon::now(),
             'solvedat' => null,
             'solutiondesc' => null,
@@ -73,18 +72,17 @@ class AuthController extends Controller
         $ticket = Ticket::findOrFail($id);
         $ticket->solutiondesc = $validated['solution'];
         $ticket->solvedat = Carbon::now();
+        $ticket->status = 'closed'; // Add a status field to indicate the ticket is closed
         $ticket->save();
 
-        // Move to history
         $ticket->delete();
 
-        return redirect()->route('history')->with('success', 'Ticket updated and moved to history!');
+        return redirect()->route('tickets')->with('success', 'Ticket updated and moved to history!');
     }
 
     public function ticketlist()
     {
         $role = Auth::user()->role;
-        // Fetch tickets based on user role
         if ($role == 'servicedesk'){
             $tickets = Ticket::all();
         } else {
@@ -96,7 +94,7 @@ class AuthController extends Controller
 
     public function tickethistory()
     {
-        $history = Ticket::onlyTrashed()->get(); // Assuming you're using soft deletes
+        $history = Ticket::onlyTrashed()->get();
         return view('history', ['data' => $history]);
     }
 
@@ -112,7 +110,6 @@ class AuthController extends Controller
 
         return view('home', compact('totalTickets'));
     }
-
 
     public function logout()
     {
