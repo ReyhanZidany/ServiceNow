@@ -3,22 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-// Route::get('/', function () {
-//     return view('login');
-// });
-
-// Route::get('/home', function () {
-//     return view('home');
-// });
-
-// Route::get('/tickets', function () {
-//     return view('tickets');
-// });
-
-// Route::get('/history', function () {
-//     return view('history');
-// });    
-
 Route::get('/tickets/create', [AuthController::class, 'createTicket'])->name('tickets.create');
 Route::post('/tickets', [AuthController::class, 'storeTicket'])->name('tickets.store');
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');

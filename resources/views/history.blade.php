@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <title>History</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <style>
+        table {
+            width: 100%;
+        }
+        td, th {
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #e1e1e1;
+        }
+        .odd {
+            background-color: #f2f2f2;
+        }
+        .even {
+            background-color: #ffffff;
+        }
         .profile-dropdown {
             position: relative;
             display: inline-block;
@@ -76,10 +90,10 @@
         </div>
     </header>
     <main>
-        <div class="container mx-auto mt-8">
-            <section class="text-center">
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">This is History Page</h1>
-                <p class="text-lg text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique mattis urna, et iaculis dolor mollis vel.</p>
+        <section class="text-center">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-4xl font-bold text-gray-900">History Tickets</h1>
+    
             </section>
             <section class="mt-8 bg-white shadow rounded-lg p-6">
                 <div class="overflow-x-auto mt-4">
@@ -96,14 +110,16 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                                <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                    <td class="px-4 py-2">{{ $item->title }}</td>
-                                    <td class="px-4 py-2">{{ $item->description }}</td>
-                                    <td class="px-4 py-2">{{ $item->user_id }}</td>
-                                    <td class="px-4 py-2">{{ $item->createdat }}</td>
-                                    <td class="px-4 py-2">{{ $item->solvedat }}</td>
-                                    <td class="px-4 py-2">{{ $item->solutiondesc }}</td>
-                                </tr>
+                                @if(Auth::user()->role === 'servicedesk' || Auth::user()->id === $item->user_id)
+                                    <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
+                                        <td class="px-4 py-2">{{ $item->title }}</td>
+                                        <td class="px-4 py-2">{{ $item->description }}</td>
+                                        <td class="px-4 py-2">{{ $item->user_id }}</td>
+                                        <td class="px-4 py-2">{{ $item->createdat }}</td>
+                                        <td class="px-4 py-2">{{ $item->solvedat }}</td>
+                                        <td class="px-4 py-2">{{ $item->solutiondesc }}</td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

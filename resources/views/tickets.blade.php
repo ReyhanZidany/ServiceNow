@@ -125,7 +125,9 @@
                                     <td class="px-4 py-2">{{ $item->user_id }}</td>
                                     <td class="px-4 py-2">{{ $item->createdat }}</td>
                                     <td class="px-4 py-2">
+                                        @if(Auth::user()->role !== 'servicedesk')
                                         <a href="{{ route('tickets.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700">Add Solution</a>
+                                    @endif
                                     </td>
                                 </tr>
                             @endforeach
