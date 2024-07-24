@@ -10,13 +10,12 @@
         table {
             width: 100%;
         }
-        td, th {
+        td {
             padding: 10px;
             margin-bottom: 5px;
-            border: 1px solid #e1e1e1;
         }
         .odd {
-            background-color: #f2f2f2;
+            background-color: #e1e1e1;
         }
         .even {
             background-color: #ffffff;
@@ -90,12 +89,17 @@
         </div>
     </header>
     <main>
-        <section class="text-center">
-            <div class="flex justify-between items-center mb-4">
-                <h1 class="text-4xl font-bold text-gray-900">History Tickets</h1>
-    
-            </section>
-            <section class="mt-8 bg-white shadow rounded-lg p-6">
+        <div class="container mx-auto mt-8 px-4">
+            @if (session('success'))
+                <div class="bg-green-500 text-white p-4 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <section class="text-center">
+                <div class="flex justify-between items-center mb-4">
+                    <h1 class="text-4xl font-bold text-gray-900">History Tickets</h1>
+                </div>
                 <div class="overflow-x-auto mt-4">
                     <table class="w-full mx-auto">
                         <thead>

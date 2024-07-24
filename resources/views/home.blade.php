@@ -18,21 +18,29 @@
             height: calc(100vh - 64px); /* Adjust for navbar height */
             padding-top: 40px; /* Add padding to move content down */
             text-align: center;
+            flex-wrap: wrap; /* Allow wrapping for responsiveness */
+            gap: 30px;
         }
         .ticket {
             border-radius: 30px; /* Rounded corners */
-            padding: 20px;
+            padding: 40px; /* Increased padding for more space */
             background-color: #e3e3e3;
+            width: 400px; /* Increased width for wider sections */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+            text-align: center;
         }
         .total-tickets {
-            font-size: 48px;
+            font-size: 70px;
             font-weight: bold;
-            color: #4a90e2;
+            color: #ea1212;
+            margin-bottom: 10px;
+            
         }
         .solved-tickets {
-            font-size: 48px;
+            font-size: 70px;
             font-weight: bold;
             color: #4a90e2;
+            margin-bottom: 10px;
         }
         .navbar {
             background-color: #4a90e2;
