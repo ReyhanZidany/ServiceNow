@@ -13,13 +13,17 @@
         }
         .home-container {
             display: flex;
+            flex-direction: column; /* Stack items vertically */
             justify-content: center;
-            align-items: flex-start; /* Align items to the start (top) */
+            align-items: center; /* Center items horizontally */
             height: calc(100vh - 64px); /* Adjust for navbar height */
             padding-top: 40px; /* Add padding to move content down */
             text-align: center;
-            flex-wrap: wrap; /* Allow wrapping for responsiveness */
-            gap: 30px;
+        }
+        .tickets-row {
+            display: flex;
+            gap: 30px; /* Space between columns */
+            margin-bottom: 30px; /* Space below the row */
         }
         .ticket {
             border-radius: 30px; /* Rounded corners */
@@ -129,16 +133,18 @@
         </div>
     </header>
     <main class="home-container">
-        <div class="ticket">
-            <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
-            <p>Tickets Unresolved</p>
+        <div class="tickets-row">
+            <div class="ticket">
+                <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
+                <p>Tickets Unresolved</p>
+            </div>
+            <div class="ticket">
+                <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
+                <p>Tickets Solved</p>
+            </div>
         </div>
         <div class="ticket">
-            <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
-            <p>Tickets Solved</p>
-        </div>
-        <div class="ticket">
-            <h1 class="total-tickets">{{ $totalTickets }}</h1> <!-- Updated to use the new variable -->
+            <h1 class="total-tickets">{{ $totalTickets }}</h1>
             <p>Total Tickets</p>
         </div>
     </main>
