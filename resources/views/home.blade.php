@@ -29,6 +29,11 @@
             font-weight: bold;
             color: #4a90e2;
         }
+        .solved-tickets {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4a90e2;
+        }
         .navbar {
             background-color: #4a90e2;
             color: white;
@@ -114,6 +119,11 @@
         <div class="ticket">
             <h1 class="total-tickets">{{ $totalTickets }}</h1>
             <p>Total Tickets</p>
+            </div>
+        <div class="ticket">
+            <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
+            <p>Tickets Solved</p>
+        </div>
         </div>
     </main>
 </body>
