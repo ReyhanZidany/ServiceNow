@@ -52,7 +52,7 @@ class AuthController extends Controller
             $validated['image'] = $path;
         }
 
-        $panjul = Ticket::create([
+        $new = Ticket::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
             'user_id' => $validated['user_id'],
@@ -64,9 +64,9 @@ class AuthController extends Controller
         
 
         History::create([
-            'ticket_id' => $panjul['id'],
+            'ticket_id' => $new['id'],
             'activity' => sprintf(
-                'ticket created by %s on %s with title %s assigned to %s',
+                'ticket created by %s on %s with title %s assigned to user id ( %s )',
                 Auth::user()->role, 
                 Carbon::now(),
                 $validated['title'],
@@ -95,11 +95,18 @@ class AuthController extends Controller
         $ticket->status = 'closed'; 
         $ticket->save();
 
+        $ticket->delete();
+
        
 
         History::create([
             'ticket_id' => $ticket['id'],
-            'activity' => 'ticket resolved by '.Auth::user()->role ,
+            'activity' => sprintf(
+            'Ticket resolved by %s on %s with solution "%s"',
+            Auth::user()->role,
+            Carbon::now()->toDateTimeString(),
+            $validated['solution']
+            ),
         ]);
 
         return redirect()->route('tickets')->with('success', 'Ticket updated and moved to history!');
