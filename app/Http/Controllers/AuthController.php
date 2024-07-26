@@ -61,7 +61,6 @@ class AuthController extends Controller
             'solutiondesc' => null,
         ]);
        
-        
 
         History::create([
             'ticket_id' => $new['id'],
@@ -127,7 +126,7 @@ class AuthController extends Controller
     public function tickethistory()
     {
         $data = History::all();
-
+        
         return view('history', compact('data'));
     }
 
@@ -136,11 +135,9 @@ class AuthController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'servicedesk') {
-            // Menghitung tiket yang belum selesai dan yang sudah selesai
             $unsolvedTickets = Ticket::whereNull('solvedat')->count();
             $solvedTickets = Ticket::whereNotNull('solvedat')->count();
         } else {
-            // Menghitung tiket yang belum selesai dan yang sudah selesai untuk PIC
             $unsolvedTickets = Ticket::where('user_id', $user->id)->whereNull('solvedat')->count();
             $solvedTickets = Ticket::where('user_id', $user->id)->whereNotNull('solvedat')->count();
         }

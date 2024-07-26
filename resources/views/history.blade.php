@@ -201,12 +201,12 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
-                        @if(Auth::user()->role === 'servicedesk' || Auth::user()->id === $item->user_id)
+
                             <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
                                 <td>{{ $item->ticket_id }}</td>
                                 <td>{{ $item->activity }}</td>
                             </tr>
-                        @endif
+                
                     @endforeach
                 </tbody>
             </table>

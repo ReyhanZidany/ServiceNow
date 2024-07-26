@@ -191,7 +191,7 @@
                                 <th class="px-4 py-2 border">Description</th>
                                 <th class="px-4 py-2 border">User ID</th>
                                 <th class="px-4 py-2 border">Created At</th>
-                                <th class="px-4 py-2 border">Actions</th>
+                                <th class="px-4 py-2 border">Status</th>
                             </tr>
                         </thead>
                         <tbody>
