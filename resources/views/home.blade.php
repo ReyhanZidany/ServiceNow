@@ -59,7 +59,7 @@
         .sidebar {
             background-color: #e8e8e9;
             padding: 10px;
-            width: 200px;
+            width: 150px;
             height: calc(100vh - 64px);
             position: fixed;
             top: 64px;

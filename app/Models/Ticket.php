@@ -28,13 +28,12 @@ class Ticket extends Model
     protected $dates = ['createdat', 'solvedat', 'deleted_at'];
 
     // Relationship to the user who created the ticket
-    public function creator()
+    public function createdBy()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
-    // Relationship to the user who resolved the ticket
-    public function resolver()
+    public function resolvedBy()
     {
         return $this->belongsTo(User::class, 'resolved_by');
     }

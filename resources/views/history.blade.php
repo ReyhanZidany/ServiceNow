@@ -195,24 +195,16 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>User ID</th>
-                        <th>Created At</th>
-                        <th>Solved At</th>
-                        <th>Solution Description</th>
+                        <th>Ticket_ID</th>
+                        <th>Activity</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         @if(Auth::user()->role === 'servicedesk' || Auth::user()->id === $item->user_id)
                             <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->description }}</td>
-                                <td>{{ $item->user_id }}</td>
-                                <td>{{ $item->createdat }}</td>
-                                <td>{{ $item->solvedat }}</td>
-                                <td>{{ $item->solutiondesc }}</td>
+                                <td>{{ $item->ticket_id }}</td>
+                                <td>{{ $item->activity }}</td>
                             </tr>
                         @endif
                     @endforeach

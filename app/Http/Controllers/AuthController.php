@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Models\History;
 use Carbon\Carbon;
 
 class AuthController extends Controller
@@ -51,13 +52,21 @@ class AuthController extends Controller
             $validated['image'] = $path;
         }
 
-        Ticket::create([
+        $panjul = Ticket::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
             'user_id' => $validated['user_id'],
             'createdat' => Carbon::now(),
             'solvedat' => null,
             'solutiondesc' => null,
+        ]);
+       
+        
+        
+
+        History::create([
+            'ticket_id' => $panjul['id'],
+            'activity' => 'add ticket, created by '.Auth::user()->role,
         ]);
 
         return redirect()->route('tickets')->with('success', 'Ticket created successfully!');
@@ -81,7 +90,12 @@ class AuthController extends Controller
         $ticket->status = 'closed'; // Add a status field to indicate the ticket is closed
         $ticket->save();
 
-        $ticket->delete();
+       
+
+        History::create([
+            'ticket_id' => $ticket['id'],
+            'activity' => 'ticket resolved by '.Auth::user()->role ,
+        ]);
 
         return redirect()->route('tickets')->with('success', 'Ticket updated and moved to history!');
     }
@@ -100,8 +114,9 @@ class AuthController extends Controller
 
     public function tickethistory()
     {
-        $history = Ticket::onlyTrashed()->with(['creator', 'resolver'])->get();
-    return view('history', ['data' => $history]);
+        $data = History::all();
+
+        return view('history', compact('data'));
     }
 
     public function index()
