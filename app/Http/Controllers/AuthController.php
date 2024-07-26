@@ -43,7 +43,13 @@ class AuthController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'user_id' => 'required|exists:users,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('ticket_images', 'public');
+            $validated['image'] = $path;
+        }
 
         Ticket::create([
             'title' => $validated['title'],
@@ -94,8 +100,8 @@ class AuthController extends Controller
 
     public function tickethistory()
     {
-        $history = Ticket::onlyTrashed()->get();
-        return view('history', ['data' => $history]);
+        $history = Ticket::onlyTrashed()->with(['creator', 'resolver'])->get();
+    return view('history', ['data' => $history]);
     }
 
     public function index()
