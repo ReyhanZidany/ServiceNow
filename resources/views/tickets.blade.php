@@ -196,17 +196,38 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                                <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                    <td class="px-4 py-2">{{ $item->title }}</td>
-                                    <td class="px-4 py-2">{{ $item->description }}</td>
-                                    <td class="px-4 py-2">{{ $item->user_id }}</td>
-                                    <td class="px-4 py-2">{{ $item->createdat }}</td>
-                                    <td class="px-4 py-2">
-                                        @if(Auth::user()->role !== 'servicedesk')
-                                        <a href="{{ route('tickets.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700">Add Solution</a>
-                                        @endif
-                                    </td>
-                                </tr>
+                                @if(Auth::user()->role === 'servicedesk')
+                                    <!-- Servicedesk view: Show status and no action if solved -->
+                                    <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
+                                        <td class="px-4 py-2">{{ $item->title }}</td>
+                                        <td class="px-4 py-2">{{ $item->description }}</td>
+                                        <td class="px-4 py-2">{{ $item->user_id }}</td>
+                                        <td class="px-4 py-2">{{ $item->createdat }}</td>
+                                        <td class="px-4 py-2">
+                                            @if(is_null($item->solvedat))
+                                                <span class="text-red-500">Unsolved</span>
+                                            @else
+                                                <span class="text-green-500">Solved</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-2">
+                                            <!-- Servicedesk does not have actions -->
+                                        </td>
+                                    </tr>
+                                @else
+                                    <!-- PIC view: Show only unsolved tickets with action -->
+                                    @if(is_null($item->solvedat))
+                                        <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
+                                            <td class="px-4 py-2">{{ $item->title }}</td>
+                                            <td class="px-4 py-2">{{ $item->description }}</td>
+                                            <td class="px-4 py-2">{{ $item->user_id }}</td>
+                                            <td class="px-4 py-2">{{ $item->createdat }}</td>
+                                            <td class="px-4 py-2">
+                                                <a href="{{ route('tickets.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700">Solve Incident</a>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

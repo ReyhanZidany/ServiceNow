@@ -95,7 +95,7 @@ class AuthController extends Controller
         $ticket->status = 'closed'; 
         $ticket->save();
 
-        $ticket->delete();
+        
 
        
 
@@ -136,11 +136,13 @@ class AuthController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'servicedesk') {
-            $unsolvedTickets = Ticket::count();
-            $solvedTickets = Ticket::onlyTrashed()->count(); 
+            // Menghitung tiket yang belum selesai dan yang sudah selesai
+            $unsolvedTickets = Ticket::whereNull('solvedat')->count();
+            $solvedTickets = Ticket::whereNotNull('solvedat')->count();
         } else {
-            $unsolvedTickets = Ticket::where('user_id', $user->id)->count();
-            $solvedTickets = Ticket::where('user_id', $user->id)->onlyTrashed()->count(); 
+            // Menghitung tiket yang belum selesai dan yang sudah selesai untuk PIC
+            $unsolvedTickets = Ticket::where('user_id', $user->id)->whereNull('solvedat')->count();
+            $solvedTickets = Ticket::where('user_id', $user->id)->whereNotNull('solvedat')->count();
         }
 
         $totalTickets = $unsolvedTickets + $solvedTickets;
