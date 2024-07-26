@@ -62,11 +62,16 @@ class AuthController extends Controller
         ]);
        
         
-        
 
         History::create([
             'ticket_id' => $panjul['id'],
-            'activity' => 'add ticket, created by '.Auth::user()->role,
+            'activity' => sprintf(
+                'ticket created by %s on %s with title %s assigned to %s',
+                Auth::user()->role, 
+                Carbon::now(),
+                $validated['title'],
+                $validated['user_id']
+            )
         ]);
 
         return redirect()->route('tickets')->with('success', 'Ticket created successfully!');
@@ -87,7 +92,7 @@ class AuthController extends Controller
         $ticket = Ticket::findOrFail($id);
         $ticket->solutiondesc = $validated['solution'];
         $ticket->solvedat = Carbon::now();
-        $ticket->status = 'closed'; // Add a status field to indicate the ticket is closed
+        $ticket->status = 'closed'; 
         $ticket->save();
 
        
