@@ -171,6 +171,7 @@
             <button class="text-black hover:text-gray-500 focus:outline-none" onclick="toggleSidebar()">
                 ☰
             </button>
+            <a href="{{ url('home') }}" >
             <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
         </div>
         <div class="profile-dropdown" id="profileDropdown">
@@ -198,6 +199,7 @@
         <main class="home-container">
             <div class="tickets-row">
                 <div class="ticket">
+                    <a href="{{ url('tickets') }}" >
                     <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
                     <p>Tickets Unresolved</p>
                 </div>

@@ -149,6 +149,7 @@
             <button class="text-black hover:text-gray-500 focus:outline-none" onclick="toggleSidebar()">
                 ☰
             </button>
+            <a href="{{ url('home') }}" >
             <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
         </div>
         <div class="profile-dropdown" id="profileDropdown">

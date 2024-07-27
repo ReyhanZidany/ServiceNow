@@ -61,6 +61,7 @@
         <div class="container mx-auto flex items-center justify-between py-2 px-6">
             <div class="flex items-center">
                 <div class="mr-6">
+                    <a href="{{ url('home') }}" >
                     <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="h-12">
                 </div>
                 <nav class="space-x-4">
