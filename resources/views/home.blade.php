@@ -59,13 +59,14 @@
         .sidebar {
             background-color: #e8e8e9;
             padding: 10px;
-            width: 150px;
+            width: 200px;
             height: calc(100vh - 64px);
             position: fixed;
             top: 64px;
             left: 0;
             transform: translateX(-250px);
             transition: transform 0.3s ease;
+            margin-top: 10px;
         }
         .sidebar.open {
             transform: translateX(0);
@@ -84,6 +85,10 @@
             width: calc(100% + 20px); /* Extends the clickable area to the left */
             margin-left: -10px; /* Centers the link text */
             padding-left: 20px; /* Ensures text is properly aligned */
+        }
+        .sidebar a.active {
+            background-color: #9e9d9d; /* Highlight color for active link */
+            color: rgb(0, 0, 0);
         }
         .sidebar a:hover {
             background-color: #9e9d9d; /* Full-width highlight color */

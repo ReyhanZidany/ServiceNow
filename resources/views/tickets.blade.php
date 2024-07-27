@@ -66,6 +66,7 @@
             left: 0;
             transform: translateX(-200px);
             transition: transform 0.3s ease;
+            margin-top: 10px;
         }
         .sidebar.open {
             transform: translateX(0);
@@ -77,10 +78,17 @@
             padding: 10px;
             text-decoration: none;
             text-align: center;
-            
+            font-style: bold;
             border-radius: 10px;
             transition: background-color 0.3s, color 0.3s;
             margin-bottom: 10px;
+            width: calc(100% + 20px); /* Extends the clickable area to the left */
+            margin-left: -10px; /* Centers the link text */
+            padding-left: 20px; /* Ensures text is properly aligned */
+        }
+        .sidebar a.active {
+            background-color: #9e9d9d; /* Highlight color for active link */
+            color: rgb(0, 0, 0);
         }
         .sidebar a:hover {
             background-color: #9e9d9d;
@@ -103,16 +111,20 @@
         }
         table {
             width: 100%;
+            border-collapse: collapse;
         }
-        td {
-            padding: 10px;
-            margin-bottom: 5px;
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
         }
-        .odd {
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:nth-child(odd) {
             background-color: #e1e1e1;
-        }
-        .even {
-            background-color: #f2f2f2;
         }
     </style>
     <script>
@@ -192,6 +204,9 @@
                                 <th class="px-4 py-2 border">User ID</th>
                                 <th class="px-4 py-2 border">Created At</th>
                                 <th class="px-4 py-2 border">Status</th>
+                                @if(Auth::user()->role !== 'servicedesk')
+                                    <th class="px-4 py-2 border">Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -210,9 +225,6 @@
                                                 <span class="text-green-500">Solved</span>
                                             @endif
                                         </td>
-                                        <td class="px-4 py-2">
-                                            <!-- Servicedesk does not have actions -->
-                                        </td>
                                     </tr>
                                 @else
                                     <!-- PIC view: Show only unsolved tickets with action -->
@@ -222,6 +234,7 @@
                                             <td class="px-4 py-2">{{ $item->description }}</td>
                                             <td class="px-4 py-2">{{ $item->user_id }}</td>
                                             <td class="px-4 py-2">{{ $item->createdat }}</td>
+                                            <td class="px-4 py-2 text-red-500">Unsolved</td>
                                             <td class="px-4 py-2">
                                                 <a href="{{ route('tickets.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700">Solve Incident</a>
                                             </td>

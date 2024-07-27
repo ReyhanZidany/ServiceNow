@@ -66,6 +66,7 @@
             left: 0;
             transform: translateX(-250px);
             transition: transform 0.3s ease;
+            margin-top: 10px;
         }
         .sidebar.open {
             transform: translateX(0);
@@ -125,7 +126,7 @@
             background-color: #f1f1f1;
         }
         .odd {
-            background-color: #e1e1e1;
+            background-color: #f3f2f2;
         }
         .even {
             background-color: #ffffff;
