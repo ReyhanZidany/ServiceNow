@@ -159,6 +159,7 @@
             </button>
             <a href="{{ url('home') }}" >
             <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
+            </a>
         </div>
         <div class="profile-dropdown" id="profileDropdown">
             <button class="flex items-center text-black hover:text-gray-300 focus:outline-none profile-button" onclick="toggleDropdown()">
