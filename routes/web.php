@@ -13,7 +13,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/tickets', [AuthController::class, 'ticketlist'])->name('tickets');
 Route::get('/history', [AuthController::class, 'tickethistory'])->name('history');
 Route::get('/home', [AuthController::class, 'index'])->name('home');
-
+Route::get('/profile', [AuthController::class, 'show'])->name('profile');
 Route::get('/tickets/{id}/edit', [AuthController::class, 'editTicket'])->name('tickets.edit');
 Route::put('/tickets/{id}', [AuthController::class, 'updateTicket'])->name('tickets.update');
+Route::post('/profile/upload', [AuthController::class, 'uploadProfilePicture'])->name('profile.upload');
+
 

@@ -147,6 +147,30 @@ class AuthController extends Controller
         return view('home', compact('totalTickets','unsolvedTickets', 'solvedTickets'));
     }
 
+    public function show()
+    {
+        $user = Auth::user();
+        return view('profile', compact('user'));
+    }
+
+    public function uploadProfilePicture(Request $request)
+    {
+    $request->validate([
+        'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    if ($request->hasFile('profile_picture')) {
+        $imageName = time() . '.' . $request->profile_picture->extension();
+        $request->profile_picture->storeAs('profile_pictures', $imageName, 'public');
+        $user->profile_picture = 'profile_pictures/' . $imageName;
+    }
+
+    $user->save();
+
+    return back()->with('success', 'Profile picture updated successfully.');
+    }
+    
+
     public function logout()
     {
         Auth::logout();

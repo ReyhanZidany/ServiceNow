@@ -1,9 +1,11 @@
+<!-- resources/views/profile.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <style>
@@ -109,36 +111,66 @@
         .main-content.shifted {
             margin-left: 200px;
         }
-        .home-container {
+        .profile-container {
             display: flex;
-            flex-direction: column; /* Stack items vertically */
-            justify-content: flex-start;
-            align-items: center; /* Center items horizontally */
-            height: calc(100vh - 64px); /* Adjust for navbar height */
-            padding-top: 40px; /* Add padding to move content down */
-            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
         }
-        .tickets-row {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        .ticket {
-            border-radius: 30px;
-            padding: 40px;
-            background-color: #f7f6f6;
+        .profile-card {
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ffffff;
             width: 400px;
-            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            border: 2px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .unsolved-tickets, .solved-tickets, .total-tickets {
-            font-size: 70px;
+        .profile-card img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        .profile-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: left; /* Tulisan di kiri */
+        }
+        .profile-card p {
+            font-size: 18px;
+            margin-bottom: 5px;
+            text-align: left;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .profile-card p span.label {
             font-weight: bold;
+            width: 150px; /* Adjust as needed to align labels properly */
+        }
+        .profile-card p span.value {
+            flex-grow: 1;
+        }
+        .profile-card button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .profile-card input[type="file"] {
+            margin-top: 10px;
             margin-bottom: 10px;
         }
-        .unsolved-tickets { color: #ea1212; }
-        .solved-tickets { color: #4a90e2; }
-        .total-tickets { color: #28a745; }
+
+        .profile-card button:hover {
+            color: #45a049;
+        }
     </style>
     <script>
         function toggleDropdown() {
@@ -162,6 +194,25 @@
                 }
             }
         }
+        function previewProfilePicture(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('profilePicturePreview');
+            output.src = reader.result;
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+        };
+        reader.readAsDataURL(event.target.files[0]);
+
+        // Copy file to hidden input
+        var input = document.getElementById('profilePictureHiddenInput');
+        input.files = event.target.files;
+        }
+
+        function uploadProfilePicture() {
+            document.getElementById('profilePictureForm').submit();
+        }
     </script>
 </head>
 <body>
@@ -177,7 +228,7 @@
         <div class="profile-dropdown" id="profileDropdown">
             <button class="flex items-center text-black hover:text-gray-300 focus:outline-none profile-button" onclick="toggleDropdown()">
                 <span>{{ Auth::user()->name }}</span>
-                <img src="{{ asset('img/panjul.jpg') }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
+                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
             </button>
             <div class="profile-dropdown-content">
                 <a href="{{ route('profile') }}">Profile</a>
@@ -185,8 +236,9 @@
             </div>
         </div>
     </header>
+    
     <div class="sidebar" id="sidebar">
-        <a href="#">
+        <a href="{{ route('home') }}">
             <img src="{{ asset('img/list.png') }}" alt="Home Icon"> Home
         </a>
         <a href="{{ route('tickets') }}">
@@ -197,22 +249,23 @@
         </a>
     </div>
     <div class="main-content" id="mainContent">
-        <main class="home-container">
-            <div class="tickets-row">
-                <a href="{{ route('tickets') }}" class="ticket">
-                    <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
-                    <p>Tickets Unresolved</p>
-                </a>
-                <div class="ticket">
-                    <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
-                    <p>Tickets Solved</p>
-                </div>
+        <div class="profile-container">
+            <div class="profile-card">
+                <img src="{{ Auth::user()->profile_picture }}" alt="Profile Picture" id="profilePicturePreview">
+                <input type="file" id="profilePictureInput" style="display:none;" accept="image/*" onchange="previewProfilePicture(event)">
+                <button onclick="document.getElementById('profilePictureInput').click()">Change Profile Picture</button>
+                <h2>Profile</h2>
+                <p><span class="label">Username</span> <span class="value">: {{ Auth::user()->name }}</span></p>
+                <p><span class="label">User ID</span> <span class="value">: {{ Auth::user()->id }}</span></p>
+                <p><span class="label">Email</span> <span class="value">: {{ Auth::user()->email }}</span></p>
+                <p><span class="label">Role</span> <span class="value">: {{ Auth::user()->role }}</span></p>
+                <form id="profilePictureForm" method="POST" action="{{ route('profile.upload') }}" enctype="multipart/form-data" style="display:none;">
+                    @csrf
+                    <input type="file" name="profile_picture" id="profilePictureHiddenInput">
+                </form>
+                <button onclick="uploadProfilePicture()">Save Profile Picture</button>
             </div>
-            <div class="ticket">
-                <h1 class="total-tickets">{{ $totalTickets }}</h1>
-                <p>Total Tickets</p>
-            </div>
-        </main>
+        </div>
     </div>
 </body>
 </html>
