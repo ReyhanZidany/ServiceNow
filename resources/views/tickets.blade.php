@@ -117,7 +117,8 @@
             padding: 12px;
             border-bottom: 1px solid #ddd;
             border-top: 1px solid #ddd;
-            /* Removed vertical borders */
+            border-radius: 5px;
+            text-align: left;
         }
         th {
             background-color: #f4f4f4;
@@ -203,12 +204,11 @@
                     <table class="w-full mx-auto">
                         <thead>
                             <tr>
-                                <th class="px-4 py-2 border">Ticket ID</th>
-                                <th class="px-4 py-2 border">Title</th>
-                                <th class="px-4 py-2 border">Description</th>
-                                <th class="px-4 py-2 border">User ID</th>
-                                <th class="px-4 py-2 border">Created At</th>
-                                <th class="px-4 py-2 border">Status</th>
+                                <th class="px-4 py-2">Ticket ID</th>
+                                <th class="px-4 py-2">Title</th>
+                                <th class="px-4 py-2">User ID</th>
+                                <th class="px-4 py-2">Created At</th>
+                                <th class="px-4 py-2">Status</th>
                                 @if(Auth::user()->role !== 'servicedesk')
                                     <th class="px-4 py-2 border">Action</th>
                                 @endif
@@ -224,7 +224,6 @@
                                             </a>
                                         </td>
                                         <td class="px-4 py-2">{{ $item->title }}</td>
-                                        <td class="px-4 py-2">{{ $item->description }}</td>
                                         <td class="px-4 py-2">{{ $item->user_id }}</td>
                                         <td class="px-4 py-2">{{ $item->createdat }}</td>
                                         <td class="px-4 py-2">
@@ -238,8 +237,10 @@
                                 @else
                                     @if(is_null($item->solvedat))
                                         <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                            <td class="px-4 py-2 flex items-center">
+                                            <td class="px-4 py-2">
+                                                <a href="{{ route('tickets.view', $item->id) }}" class="text-blue-500 hover:underline">
                                                 {{ $item->id }}
+                                                </a>
                                             </td>
                                             <td class="px-4 py-2">{{ $item->title }}</td>
                                             <td class="px-4 py-2">{{ $item->user_id }}</td>

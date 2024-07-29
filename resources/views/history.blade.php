@@ -121,6 +121,7 @@
         th, td {
             padding: 12px;
             border: 1px solid #ddd;
+            text-align: left;
         }
         th {
             background-color: #f1f1f1;
@@ -198,7 +199,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Ticket_ID</th>
+                        <th>Ticket ID</th>
                         <th>Activity</th>
                     </tr>
                 </thead>
