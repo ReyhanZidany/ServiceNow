@@ -82,16 +82,16 @@
             border-radius: 10px;
             transition: background-color 0.3s, color 0.3s;
             margin-bottom: 10px;
-            width: calc(100% + 20px); /* Extends the clickable area to the left */
-            margin-left: -10px; /* Centers the link text */
-            padding-left: 20px; /* Ensures text is properly aligned */
+            width: calc(100% + 20px); 
+            margin-left: -10px; 
+            padding-left: 20px;
         }
         .sidebar a.active {
-            background-color: #9e9d9d; /* Highlight color for active link */
+            background-color: #9e9d9d; 
             color: rgb(0, 0, 0);
         }
         .sidebar a:hover {
-            background-color: #9e9d9d; /* Full-width highlight color */
+            background-color: #9e9d9d; 
             color: rgb(0, 0, 0);
         }
         .sidebar img {
@@ -169,10 +169,10 @@
             color: #45a049;
         }
         .profile-dropdown img {
-            border: 2px solid black; /* Black border around the image */
-            border-radius: 50%; /* Makes the image circular */
-            width: 40px; /* Adjust the width as needed */
-            height: 40px; /* Adjust the height as needed */
+            border: 2px solid black; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
         }
     </style>
     <script>

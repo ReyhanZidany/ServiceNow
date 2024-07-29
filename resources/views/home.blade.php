@@ -130,6 +130,10 @@
             width: 400px;
             box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
+            transition: background-color 0.3s;
+        }
+        .ticket:hover {
+            background-color: #e8e8e9;
         }
         .unsolved-tickets, .solved-tickets, .total-tickets {
             font-size: 70px;
@@ -209,15 +213,15 @@
                     <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
                     <p>Tickets Unresolved</p>
                 </a>
-                <div class="ticket">
+                <a href="{{ route('tickets') }}" class="ticket">
                     <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
                     <p>Tickets Solved</p>
-                </div>
+                </a>
             </div>
-            <div class="ticket">
+            <a href="{{ route('tickets') }}" class="ticket">
                 <h1 class="total-tickets">{{ $totalTickets }}</h1>
                 <p>Total Tickets</p>
-            </div>
+            </a>
         </main>
     </div>
 </body>
