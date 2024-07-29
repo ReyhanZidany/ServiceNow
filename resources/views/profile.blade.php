@@ -1,5 +1,3 @@
-<!-- resources/views/profile.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +165,6 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
-
         .profile-card button:hover {
             color: #45a049;
         }
@@ -201,23 +198,28 @@
             }
         }
         function previewProfilePicture(event) {
-        var reader = new FileReader();
-        reader.onload = function(){
-            var output = document.getElementById('profilePicturePreview');
-            output.src = reader.result;
-            output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-        }
-        };
-        reader.readAsDataURL(event.target.files[0]);
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('profilePicturePreview');
+                output.src = reader.result;
+                output.onload = function() {
+                    URL.revokeObjectURL(output.src); // Free memory
+                }
+            };
+            reader.readAsDataURL(event.target.files[0]);
 
-        // Copy file to hidden input
-        var input = document.getElementById('profilePictureHiddenInput');
-        input.files = event.target.files;
+            // Copy file to hidden input
+            var input = document.getElementById('profilePictureHiddenInput');
+            input.files = event.target.files;
         }
 
         function uploadProfilePicture() {
             document.getElementById('profilePictureForm').submit();
+        }
+
+        function updateNavbarProfilePicture() {
+            var profilePictureSrc = document.getElementById('profilePicturePreview').src;
+            document.getElementById('navbarProfilePicture').src = profilePictureSrc;
         }
     </script>
 </head>
@@ -234,7 +236,7 @@
         <div class="profile-dropdown" id="profileDropdown">
             <button class="flex items-center text-black hover:text-gray-300 focus:outline-none profile-button" onclick="toggleDropdown()">
                 <span>{{ Auth::user()->name }}</span>
-                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
+                <img id="navbarProfilePicture" src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
             </button>
             <div class="profile-dropdown-content">
                 <a href="{{ route('profile') }}">Profile</a>
@@ -257,7 +259,7 @@
     <div class="main-content" id="mainContent">
         <div class="profile-container">
             <div class="profile-card">
-                <img src="{{ Auth::user()->profile_picture }}" alt="Profile Picture" id="profilePicturePreview">
+                <img src="{{ asset('storage/profile_pictures/' . Auth::user()->profile_picture) }}" alt="Profile Picture" id="profilePicturePreview">
                 <input type="file" id="profilePictureInput" style="display:none;" accept="image/*" onchange="previewProfilePicture(event)">
                 <button onclick="document.getElementById('profilePictureInput').click()">Change Profile Picture</button>
                 <h2>Profile</h2>
@@ -265,7 +267,7 @@
                 <p><span class="label">User ID</span> <span class="value">: {{ Auth::user()->id }}</span></p>
                 <p><span class="label">Email</span> <span class="value">: {{ Auth::user()->email }}</span></p>
                 <p><span class="label">Role</span> <span class="value">: {{ Auth::user()->role }}</span></p>
-                <form id="profilePictureForm" method="POST" action="{{ route('profile.upload') }}" enctype="multipart/form-data" style="display:none;">
+                <form id="profilePictureForm" method="POST" action="{{ route('profile.upload') }}" enctype="multipart/form-data" style="display:none;" onsubmit="updateNavbarProfilePicture()">
                     @csrf
                     <input type="file" name="profile_picture" id="profilePictureHiddenInput">
                 </form>

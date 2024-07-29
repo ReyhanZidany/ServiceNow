@@ -154,21 +154,28 @@ class AuthController extends Controller
     }
 
     public function uploadProfilePicture(Request $request)
-    {
+{
+    $user = Auth::user();
+
+    // Validate the request
     $request->validate([
         'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
+    // Handle the uploaded file
     if ($request->hasFile('profile_picture')) {
-        $imageName = time() . '.' . $request->profile_picture->extension();
-        $request->profile_picture->storeAs('profile_pictures', $imageName, 'public');
-        $user->profile_picture = 'profile_pictures/' . $imageName;
+        $file = $request->file('profile_picture');
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/profile_pictures', $fileName);
+
+        // Update user's profile picture path in database
+        $user->profile_picture = $fileName;
+        $user->save();
     }
 
-    $user->save();
+    return redirect()->back()->with('success', 'Profile picture updated successfully!');
+}
 
-    return back()->with('success', 'Profile picture updated successfully.');
-    }
     
     public function view($id)
     {

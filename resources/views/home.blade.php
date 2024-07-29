@@ -183,7 +183,7 @@
         <div class="profile-dropdown" id="profileDropdown">
             <button class="flex items-center text-black hover:text-gray-300 focus:outline-none profile-button" onclick="toggleDropdown()">
                 <span>{{ Auth::user()->name }}</span>
-                <img src="{{ asset('img/panjul.jpg') }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
+                <img src="{{ asset('storage/profile_pictures/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
             </button>
             <div class="profile-dropdown-content">
                 <a href="{{ route('profile') }}">Profile</a>
