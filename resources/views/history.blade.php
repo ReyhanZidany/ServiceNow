@@ -112,7 +112,7 @@
         .table-container {
             overflow-x: auto;
             padding: 20px;
-            background-color: #f7f7f7;
+            background-color: #ffffff;
         }
         table {
             width: 100%;
@@ -120,7 +120,8 @@
         }
         th, td {
             padding: 12px;
-            border: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
             text-align: left;
         }
         th {

@@ -205,7 +205,7 @@
                         <thead>
                             <tr>
                                 <th class="px-4 py-2">Ticket ID</th>
-                                <th class="px-4 py-2">Title</th>
+                                <th class="px-4 py-2">Problem Statement</th>
                                 <th class="px-4 py-2">User ID</th>
                                 <th class="px-4 py-2">Created At</th>
                                 <th class="px-4 py-2">Status</th>
