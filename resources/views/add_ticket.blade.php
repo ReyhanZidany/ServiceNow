@@ -193,20 +193,29 @@
                 @csrf
                 <div class="mb-4">
                     <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Problem Statement</label>
-                    <input type="text" id="title" name="title" class="border border-gray-300 p-2 w-full rounded" required>
+                    <input type="text" id="title" name="title" class="border border-gray-300 p-2 w-full rounded" >
+                    @error('title')
+                        <div class="text-sm font-semibold text-red-600">{{ $message }}</div>                       
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                    <textarea id="description" name="description" class="border border-gray-300 p-2 w-full rounded" rows="4" required></textarea>
+                    <textarea id="description" name="description" class="border border-gray-300 p-2 w-full rounded" rows="4" ></textarea>
+                    @error('description')
+                        <div class="text-sm font-semibold text-red-600">{{ $message }}</div>                       
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="user_id" class="block text-gray-700 text-sm font-bold mb-2">Assign to User</label>
-                    <select id="user_id" name="user_id" class="border border-gray-300 p-2 w-full rounded" required>
+                    <select id="user_id" name="user_id" class="border border-gray-300 p-2 w-full rounded" >
                         <option value="">Select User</option>
                         @foreach($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
+                    @error('user_id')
+                        <div class="text-sm font-semibold text-red-600">{{ $message }}</div>                       
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Upload Image</label>

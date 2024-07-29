@@ -34,12 +34,24 @@ class AuthController extends Controller
 
     public function createTicket()
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+
         $users = User::where('role', '<>', 'servicedesk')->get();
         return view('add_ticket', compact('users'));
     }
 
     public function storeTicket(Request $request)
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -78,12 +90,24 @@ class AuthController extends Controller
 
     public function editTicket($id)
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+
         $ticket = Ticket::findOrFail($id);
         return view('edit_ticket', compact('ticket'));
     }
 
     public function updateTicket(Request $request, $id)
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+
         $validated = $request->validate([
             'solution' => 'required|string',
         ]);
@@ -113,6 +137,12 @@ class AuthController extends Controller
 
     public function ticketlist()
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+
         $role = Auth::user()->role;
         if ($role == 'servicedesk'){
             $tickets = Ticket::all();
@@ -125,6 +155,11 @@ class AuthController extends Controller
 
     public function tickethistory()
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
         $data = History::all();
         
         return view('history', compact('data'));
@@ -132,6 +167,13 @@ class AuthController extends Controller
 
     public function index()
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+        
+
         $user = Auth::user();
 
         if ($user->role === 'servicedesk') {
@@ -149,12 +191,24 @@ class AuthController extends Controller
 
     public function show()
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+
         $user = Auth::user();
         return view('profile', compact('user'));
     }
 
     public function uploadProfilePicture(Request $request)
-{
+    
+    {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
     $user = Auth::user();
 
     // Validate the request
@@ -179,6 +233,12 @@ class AuthController extends Controller
     
     public function view($id)
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+        
     $ticket = Ticket::findOrFail($id);
     return view('ticketview', compact('ticket'));
     }
@@ -186,6 +246,12 @@ class AuthController extends Controller
 
     public function logout()
     {
+        if (Auth::check()) {
+            
+        } else {
+            return back()->withErrors(['loginError' => 'Harus Login']);
+        } 
+
         Auth::logout();
         return redirect()->route('login');
     }
