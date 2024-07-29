@@ -146,6 +146,12 @@
         .status.unsolved {
             color: #ef4444;
         }
+        .profile-dropdown img {
+            border: 2px solid black; /* Black border around the image */
+            border-radius: 50%; /* Makes the image circular */
+            width: 40px; /* Adjust the width as needed */
+            height: 40px; /* Adjust the height as needed */
+        }
     </style>
     <script>
         function toggleDropdown() {
@@ -184,9 +190,10 @@
         <div class="profile-dropdown" id="profileDropdown">
             <button class="flex items-center text-black hover:text-gray-300 focus:outline-none profile-button" onclick="toggleDropdown()">
                 <span>{{ Auth::user()->name }}</span>
-                <img src="{{ asset('img/ticketwave.png') }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
+                <img src="{{ asset('img/panjul.jpg') }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
             </button>
             <div class="profile-dropdown-content">
+                <a href="{{ route('profile') }}">Profile</a>
                 <a href="{{ route('logout') }}">Logout</a>
             </div>
         </div>

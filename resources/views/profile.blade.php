@@ -171,6 +171,12 @@
         .profile-card button:hover {
             color: #45a049;
         }
+        .profile-dropdown img {
+            border: 2px solid black; /* Black border around the image */
+            border-radius: 50%; /* Makes the image circular */
+            width: 40px; /* Adjust the width as needed */
+            height: 40px; /* Adjust the height as needed */
+        }
     </style>
     <script>
         function toggleDropdown() {

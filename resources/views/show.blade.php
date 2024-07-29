@@ -26,6 +26,7 @@
                     <img src="{{ asset('img/ticketwave.png') }}" alt="Profile Picture" class="h-10 w-10 rounded-full ml-2">
                 </button>
                 <div class="profile-dropdown-content">
+                    <a href="{{ route('profile') }}">Profile</a>
                     <a href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>

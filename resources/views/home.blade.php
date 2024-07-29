@@ -139,6 +139,12 @@
         .unsolved-tickets { color: #ea1212; }
         .solved-tickets { color: #4a90e2; }
         .total-tickets { color: #28a745; }
+        .profile-dropdown img {
+            border: 2px solid black; /* Black border around the image */
+            border-radius: 50%; /* Makes the image circular */
+            width: 40px; /* Adjust the width as needed */
+            height: 40px; /* Adjust the height as needed */
+        }
     </style>
     <script>
         function toggleDropdown() {

@@ -129,6 +129,12 @@
         tr:nth-child(odd) {
             background-color: #fafafa;
         }
+        .profile-dropdown img {
+            border: 2px solid black; /* Black border around the image */
+            border-radius: 50%; /* Makes the image circular */
+            width: 40px; /* Adjust the width as needed */
+            height: 40px; /* Adjust the height as needed */
+        }
     </style>
     <script>
         function toggleDropdown() {
@@ -170,6 +176,7 @@
                 <img src="{{ asset('img/panjul.jpg') }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
             </button>
             <div class="profile-dropdown-content">
+                <a href="{{ route('profile') }}">Profile</a>
                 <a href="{{ route('logout') }}">Logout</a>
             </div>
         </div>

@@ -37,6 +37,12 @@
         .profile-dropdown.open .profile-dropdown-content {
             display: block;
         }
+        .profile-dropdown img {
+            border: 2px solid black; /* Black border around the image */
+            border-radius: 50%; /* Makes the image circular */
+            width: 40px; /* Adjust the width as needed */
+            height: 40px; /* Adjust the height as needed */
+        }
     </style>
     <script>
         function toggleDropdown() {
@@ -74,9 +80,10 @@
             <div class="profile-dropdown" id="profileDropdown">
                 <button class="flex items-center text-gray-600 hover:text-gray-900 focus:outline-none profile-button" onclick="toggleDropdown()">
                     <span>{{ Auth::user()->name }}</span>
-                    <img src="{{ asset('img/ticketwave.png') }}" alt="Profile Picture" class="h-10 w-10 rounded-full ml-2">
+                    <img src="{{ asset('img/panjul.jpg') }}" alt="Profile Picture" class="h-10 w-10 rounded-full ml-2">
                 </button>
                 <div class="profile-dropdown-content">
+                    <a href="{{ route('profile') }}">Profile</a>
                     <a href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>
