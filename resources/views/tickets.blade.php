@@ -115,7 +115,9 @@
         }
         th, td {
             padding: 12px;
-            border: 1px solid #ccc;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            /* Removed vertical borders */
         }
         th {
             background-color: #f4f4f4;
@@ -157,8 +159,8 @@
             <button class="text-black hover:text-gray-500 focus:outline-none" onclick="toggleSidebar()">
                 ☰
             </button>
-            <a href="{{ url('home') }}" >
-            <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
+            <a href="{{ url('home') }}">
+                <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
             </a>
         </div>
         <div class="profile-dropdown" id="profileDropdown">
@@ -215,7 +217,6 @@
                         <tbody>
                             @foreach ($data as $item)
                                 @if(Auth::user()->role === 'servicedesk')
-                                    <!-- Servicedesk view: Show status and no action if solved -->
                                     <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
                                         <td class="px-4 py-2">
                                             <a href="{{ route('tickets.view', $item->id) }}" class="text-blue-500 hover:underline">
@@ -235,12 +236,12 @@
                                         </td>
                                     </tr>
                                 @else
-                                    <!-- PIC view: Show only unsolved tickets with action -->
                                     @if(is_null($item->solvedat))
                                         <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                            <td class="px-4 py-2">{{ $item->id }}</td>
+                                            <td class="px-4 py-2 flex items-center">
+                                                {{ $item->id }}
+                                            </td>
                                             <td class="px-4 py-2">{{ $item->title }}</td>
-                                            <td class="px-4 py-2">{{ $item->description }}</td>
                                             <td class="px-4 py-2">{{ $item->user_id }}</td>
                                             <td class="px-4 py-2">{{ $item->createdat }}</td>
                                             <td class="px-4 py-2 text-red-500">Unsolved</td>

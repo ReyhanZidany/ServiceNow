@@ -185,7 +185,7 @@
             <form action="{{ route('tickets.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
-                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Problem Statement</label>
                     <input type="text" id="title" name="title" class="border border-gray-300 p-2 w-full rounded" required>
                 </div>
                 <div class="mb-4">
