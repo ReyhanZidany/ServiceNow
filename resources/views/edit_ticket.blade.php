@@ -90,9 +90,9 @@
                 @csrf
                 @method('PUT')
 
-                <!-- Ticket Title -->
+                
                 <div class="mb-4">
-                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Problem Statement</label>
                     <input type="text" name="title" id="title" class="w-full border-2 border-gray-300 rounded-lg p-3 bg-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ old('title', $ticket->title) }}" readonly>
                 </div>
 
