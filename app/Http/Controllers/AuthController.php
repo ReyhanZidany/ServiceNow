@@ -170,6 +170,12 @@ class AuthController extends Controller
     return back()->with('success', 'Profile picture updated successfully.');
     }
     
+    public function view($id)
+    {
+    $ticket = Ticket::findOrFail($id);
+    return view('tickets.viewticket', compact('ticket'));
+    }
+
 
     public function logout()
     {

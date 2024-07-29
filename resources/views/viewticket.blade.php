@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
-    <title>History</title>
+    <title>Ticket Detail</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('img/ticketwave.png') }}" type="image/x-icon">
     <style>
         body {
             background-color: #ffffff;
@@ -64,7 +64,7 @@
             position: fixed;
             top: 64px;
             left: 0;
-            transform: translateX(-250px);
+            transform: translateX(-200px);
             transition: transform 0.3s ease;
             margin-top: 10px;
         }
@@ -87,49 +87,41 @@
             padding-left: 20px; /* Ensures text is properly aligned */
         }
         .sidebar a.active {
-            background-color: #9e9d9d; /* Highlight color for active link */
-            color: rgb(0, 0, 0);
+            background-color: #666666;
+            color: white;
         }
-        .sidebar a:hover {
-            background-color: #9e9d9d; /* Full-width highlight color */
-            color: rgb(0, 0, 0);
-        }
-        .sidebar img {
-            height: 15px;
-            width: 15px;
-            margin-right: 10px;
+        .sidebar a:hover:not(.active) {
+            background-color: #555555;
+            color: white;
         }
         .main-content {
+            flex: 1;
             margin-left: 0;
-            flex-grow: 1;
+            margin-top: 64px; /* Height of the navbar */
             padding: 20px;
-            padding-top: 80px;
             transition: margin-left 0.3s ease;
         }
         .main-content.shifted {
             margin-left: 200px;
         }
-        .table-container {
-            overflow-x: auto;
-            padding: 20px;
-            background-color: #f7f7f7;
+        .button-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .toggle-sidebar-button {
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
+        .toggle-sidebar-button:hover {
+            background-color: #555;
         }
-        th {
-            background-color: #f1f1f1;
-        }
-        .odd {
-            background-color: #fafafa;
-        }
-        .even {
-            background-color: #f2f2f2;
+        .sidebar-toggle-icon {
+            font-size: 20px;
+            color: #333;
         }
     </style>
     <script>
@@ -157,62 +149,56 @@
     </script>
 </head>
 <body>
-    <header class="navbar">
-        <div class="flex items-center">
-            <button class="text-black hover:text-gray-500 focus:outline-none" onclick="toggleSidebar()">
-                ☰
-            </button>
-            <a href="{{ url('home') }}" >
-            <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
-            </a>
-        </div>
-        <div class="profile-dropdown" id="profileDropdown">
-            <button class="flex items-center text-black hover:text-gray-300 focus:outline-none profile-button" onclick="toggleDropdown()">
-                <span>{{ Auth::user()->name }}</span>
-                <img src="{{ asset('img/ticketwave.png') }}" alt="Profile Picture" class="h-8 w-8 rounded-full ml-2">
-            </button>
-            <div class="profile-dropdown-content">
-                <a href="{{ route('logout') }}">Logout</a>
+    <div class="navbar">
+        <div class="button-container">
+            <div class="toggle-sidebar-button" onclick="toggleSidebar()">
+                <i class="sidebar-toggle-icon">&#9776;</i>
             </div>
         </div>
-    </header>
-    <div class="sidebar" id="sidebar">
-        <a href="{{ route('home') }}">
-            <img src="{{ asset('img/list.png') }}" alt="Home Icon"> Home
+        <a href="/home">
+            <img src="{{ asset('img/ticketwave.png') }}" alt="Logo">
         </a>
-        <a href="{{ route('tickets') }}">
-            <img src="{{ asset('img/list.png') }}" alt="Tickets Icon"> Tickets
-        </a>
-        <a href="{{ route('history') }}">
-            <img src="{{ asset('img/list.png') }}" alt="History Icon"> History
-        </a>
+        <div class="profile-dropdown">
+            <button class="profile-button" onclick="toggleDropdown()">
+                {{ Auth::user()->name }}
+            </button>
+            <div class="profile-dropdown-content" id="profileDropdown">
+                <a href="#">View Profile</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="main-content" id="mainContent">
-        <div class="table-container">
-            @if (session('success'))
-                <div class="bg-green-500 text-white p-4 rounded mb-4">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <h1 class="text-4xl font-bold text-gray-900 mb-6 text-center">History Tickets</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Ticket_ID</th>
-                        <th>Activity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $item)
 
-                            <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                <td>{{ $item->ticket_id }}</td>
-                                <td>{{ $item->activity }}</td>
-                            </tr>
-                
-                    @endforeach
-                </tbody>
-            </table>
+    <div class="sidebar" id="sidebar">
+        <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Dashboard</a>
+        <a href="{{ route('tickets.index') }}" class="{{ request()->routeIs('tickets.index') ? 'active' : '' }}">Tickets</a>
+        <a href="{{ route('users.index') }}" class="{{ request()->routeIs('users.index') ? 'active' : '' }}">Users</a>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="container mx-auto mt-8 px-4">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h1 class="text-2xl font-bold mb-4">Ticket Detail</h1>
+                <div>
+                    <p><strong>Ticket ID:</strong> {{ $ticket->ticket_id }}</p>
+                    <p><strong>Title:</strong> {{ $ticket->title }}</p>
+                    <p><strong>Description:</strong> {{ $ticket->description }}</p>
+                    <p><strong>User ID:</strong> {{ $ticket->user_id }}</p>
+                    <p><strong>Created At:</strong> {{ $ticket->createdat }}</p>
+                    <p><strong>Status:</strong> 
+                        @if(is_null($ticket->solvedat))
+                            <span class="text-red-500">Unsolved</span>
+                        @else
+                            <span class="text-green-500">Solved</span>
+                        @endif
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
