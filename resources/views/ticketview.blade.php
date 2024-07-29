@@ -208,7 +208,7 @@
                 <h1>Ticket Details</h1>
             </div>
             <div class="ticket-detail">
-                <p><strong>Ticket ID:</strong> {{ $ticket->id }}</p>
+                <p><strong>Ticket ID:</strong> {{ 'REQ'. $ticket->id }}</p>
                 <p><strong>Title:</strong> {{ $ticket->title }}</p>
                 <p><strong>Description:</strong> {{ $ticket->description }}</p>
                 <p><strong>Created At:</strong> {{ $ticket->createdat }}</p>
