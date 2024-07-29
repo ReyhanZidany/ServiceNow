@@ -208,7 +208,7 @@
                     @foreach ($data as $item)
 
                             <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                <td>{{ $item->ticket_id }}</td>
+                                <td>{{ 'REQ'. $item->ticket_id }}</td>
                                 <td>{{ $item->activity }}</td>
                             </tr>
                 
