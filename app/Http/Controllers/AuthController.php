@@ -173,7 +173,7 @@ class AuthController extends Controller
     public function view($id)
     {
     $ticket = Ticket::findOrFail($id);
-    return view('tickets.viewticket', compact('ticket'));
+    return view('ticketview', compact('ticket'));
     }
 
 

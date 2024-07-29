@@ -217,7 +217,11 @@
                                 @if(Auth::user()->role === 'servicedesk')
                                     <!-- Servicedesk view: Show status and no action if solved -->
                                     <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                        <td class="px-4 py-2">{{ $item->id }}</td>
+                                        <td class="px-4 py-2">
+                                            <a href="{{ route('tickets.view', $item->id) }}" class="text-blue-500 hover:underline">
+                                                {{ $item->id }}
+                                            </a>
+                                        </td>
                                         <td class="px-4 py-2">{{ $item->title }}</td>
                                         <td class="px-4 py-2">{{ $item->description }}</td>
                                         <td class="px-4 py-2">{{ $item->user_id }}</td>
