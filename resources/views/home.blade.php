@@ -82,9 +82,9 @@
             border-radius: 10px;
             transition: background-color 0.3s, color 0.3s;
             margin-bottom: 10px;
-            width: calc(100% + 20px); /* Extends the clickable area to the left */
-            margin-left: -10px; /* Centers the link text */
-            padding-left: 20px; /* Ensures text is properly aligned */
+            width: calc(100% + 20px); 
+            margin-left: -10px; 
+            padding-left: 20px; 
         }
         .sidebar a.active {
             background-color: #9e9d9d; /* Highlight color for active link */
@@ -144,7 +144,6 @@
         .solved-tickets { color: #4a90e2; }
         .total-tickets { color: #28a745; }
         .profile-dropdown img {
-            border: 2px solid black; /* Black border around the image */
             border-radius: 50%; /* Makes the image circular */
             width: 40px; /* Adjust the width as needed */
             height: 40px; /* Adjust the height as needed */

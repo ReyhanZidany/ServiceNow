@@ -8,7 +8,6 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\GuestMiddleware;
 use Illuminate\Support\Facades\Auth;
 
-// perlu login
 
 Route::get('/tickets/create', [AuthController::class, 'createTicket'])->name('tickets.create');
 Route::post('/tickets', [AuthController::class, 'storeTicket'])->name('tickets.store');
@@ -20,7 +19,7 @@ Route::put('/tickets/{id}', [AuthController::class, 'updateTicket'])->name('tick
 Route::post('/profile/upload', [AuthController::class, 'uploadProfilePicture'])->name('profile.upload');
 Route::get('/tickets/{id}', [AuthController::class, 'view'])->name('tickets.view');
 
-// tidak perlu login
+
 Route::middleware('guest')->group(function(){
     Route::get('/', [GoodAuthController::class, 'index'])->name('login');
     Route::post('/login', [GoodAuthController::class, 'processlogin'])->name('login.process');

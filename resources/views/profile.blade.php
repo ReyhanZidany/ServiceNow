@@ -169,7 +169,6 @@
             color: #45a049;
         }
         .profile-dropdown img {
-            border: 2px solid black; 
             border-radius: 50%; 
             width: 40px; 
             height: 40px; 
