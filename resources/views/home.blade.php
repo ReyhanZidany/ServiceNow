@@ -201,7 +201,7 @@
         <a href="#">
             <img src="{{ asset('img/list.png') }}" alt="Home Icon"> Home
         </a>
-        <a href="{{ route('tickets') }}">
+        <a href="{{ route('tickets.index') }}">
             <img src="{{ asset('img/list.png') }}" alt="Tickets Icon"> Tickets
         </a>
         <a href="{{ route('history') }}">
@@ -211,16 +211,16 @@
     <div class="main-content" id="mainContent">
         <main class="home-container">
             <div class="tickets-row">
-                <a href="{{ route('tickets') }}" class="ticket">
+                <a href="{{ route('tickets.index') }}" class="ticket">
                     <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
                     <p>Tickets Unsolved</p>
                 </a>
-                <a href="{{ route('tickets') }}" class="ticket">
+                <a href="{{ route('tickets.index') }}" class="ticket">
                     <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
                     <p>Tickets Solved</p>
                 </a>
             </div>
-            <a href="{{ route('tickets') }}" class="ticket">
+            <a href="{{ route('tickets.index') }}" class="ticket">
                 <h1 class="total-tickets">{{ $totalTickets }}</h1>
                 <p>Total Tickets</p>
             </a>

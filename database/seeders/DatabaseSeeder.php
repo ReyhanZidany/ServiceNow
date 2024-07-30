@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'PIC 3'
         ]);
 
-        \App\Models\Ticket::factory()->create();
+        // ini_set('memory_limit', '3G');
+        // \App\Models\Ticket::factory(500000)->create();
     }
 }

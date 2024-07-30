@@ -184,7 +184,7 @@
         <a href="{{ route('home') }}">
             <img src="{{ asset('img/list.png') }}" alt="Home Icon"> Home
         </a>
-        <a href="{{ route('tickets') }}">
+        <a href="{{ route('tickets.index') }}">
             <img src="{{ asset('img/list.png') }}" alt="Tickets Icon"> Tickets
         </a>
         <a href="{{ route('history') }}">
@@ -225,7 +225,7 @@
                                 @if(Auth::user()->role === 'servicedesk')
                                     <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
                                         <td class="px-4 py-2">
-                                            <a href="{{ route('tickets.view', $item->id) }}" class="text-blue-500 hover:underline">
+                                            <a href="{{ route('tickets.detail', $item->id) }}" class="text-blue-500 hover:underline">
                                                 {{ 'REQ' .$item->id }}
                                             </a>
                                         </td>
@@ -244,7 +244,7 @@
                                     @if(is_null($item->solvedat))
                                         <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
                                             <td class="px-4 py-2">
-                                                <a href="{{ route('tickets.view', $item->id) }}" class="text-blue-500 hover:underline">
+                                                <a href="{{ route('tickets.detail', $item->id) }}" class="text-blue-500 hover:underline">
                                                 {{ 'REQ' .$item->id }}
                                                 </a>
                                             </td>
@@ -261,6 +261,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $data->links() }}
                 </div>
             </section>
         </main>

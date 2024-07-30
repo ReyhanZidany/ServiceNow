@@ -29,6 +29,5 @@ class GoodHomeController extends Controller
 
         return view('home', compact('totalTickets','unsolvedTickets', 'solvedTickets'));
     }
-
     
 }

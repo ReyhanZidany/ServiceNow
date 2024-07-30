@@ -174,7 +174,7 @@
         <a href="{{ route('home') }}">
             <img src="{{ asset('img/list.png') }}" alt="Home Icon"> Home
         </a>
-        <a href="{{ route('tickets') }}">
+        <a href="{{ route('tickets.index') }}">
             <img src="{{ asset('img/list.png') }}" alt="Tickets Icon"> Tickets
         </a>
         <a href="{{ route('history') }}">
