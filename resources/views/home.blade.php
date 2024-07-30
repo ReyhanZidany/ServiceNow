@@ -190,6 +190,9 @@
             </button>
             <div class="profile-dropdown-content">
                 <a href="{{ route('profile') }}">Profile</a>
+                @if(Auth::user()->role === 'servicedesk')
+                <a href="{{ route('register.pic') }}">Register New PIC</a>
+                @endif
                 <a href="{{ route('logout') }}">Logout</a>
             </div>
         </div>

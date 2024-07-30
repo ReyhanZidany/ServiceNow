@@ -20,6 +20,13 @@ Route::post('/profile/upload', [AuthController::class, 'uploadProfilePicture'])-
 Route::get('/tickets/{id}', [AuthController::class, 'view'])->name('tickets.view');
 Route::get('/history', [AuthController::class, 'search'])->name('history');
 
+// routes/web.php
+
+Route::get('/register-pic', [AuthController::class, 'showRegistrationForm'])
+    
+    ->name('register.pic');
+Route::post('/register-pic', [AuthController::class, 'registerPic']);
+
 
 Route::middleware('guest')->group(function(){
     Route::get('/', [GoodAuthController::class, 'index'])->name('login');

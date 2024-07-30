@@ -8,6 +8,8 @@ use App\Models\Ticket;
 use App\Models\User;
 use App\Models\History;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -263,6 +265,33 @@ class AuthController extends Controller
         $data = $query->get();
 
         return view('history', compact('data'));
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('register-pic');
+    }
+
+    public function registerPic(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role' => $request->input('role'),
+        ]);
+
+        return redirect()->route('home')->with('success', 'PIC registered successfully.');
     }
 
 

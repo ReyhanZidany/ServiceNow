@@ -24,31 +24,24 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'APPS 1',
+            'name' => 'PIC 1',
             'email' => 'rehan@gmail.com',
             'password' => Hash::make('password'),
-            'role' => 'APPS 1'
+            'role' => 'PIC 1'
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'APPS 2',
+            'name' => 'PIC 2',
             'email' => 'yamal@gmail.com',
             'password' => Hash::make('password'),
-            'role' => 'APPS 2'
+            'role' => 'PIC 2'
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'INFRA 2',
+            'name' => 'PIC 3',
             'email' => 'abc@gmail.com',
             'password' => Hash::make('password'),
-            'role' => 'INFRA 2'
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'INFRA 2',
-            'email' => 'kaka@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => 'INFRA 2'
+            'role' => 'PIC 3'
         ]);
 
         \App\Models\Ticket::factory()->create();
