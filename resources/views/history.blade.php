@@ -138,6 +138,46 @@
             width: 40px; /* Adjust the width as needed */
             height: 40px; /* Adjust the height as needed */
         }
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            border: 3px solid transparent;
+            border-radius: 4px;
+            padding-left: 40px; /* Adjust based on icon size */
+            transition: border 0.3s ease;
+            flex-grow: 1;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s ease, border 0.3s ease;
+        }
+        .search-input.active {
+            border: 3px solid #ddd; /* Border color when active */
+            opacity: 1; /* Make the input visible */
+        }
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: none; /* Ensure no background is applied */
+            border: none; /* Ensure no border is applied */
+        }
+        .submit-button {
+            display: none; /* Initially hidden */
+            color: white;
+            margin-left: 10px;
+            border: 2px solid #ffffff; /* Add border to button */
+            padding: 3px 6px; /* Add padding for better appearance */
+            border-radius: 7px; /* Rounded corners */
+            background-color: #333ac1; /* Background color */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        .search-wrapper.show-submit .submit-button {
+            display: inline-block; /* Show the button when active */
+        }
     </style>
     <script>
         function toggleDropdown() {
@@ -150,6 +190,15 @@
             sidebar.classList.toggle("open");
             mainContent.classList.toggle("shifted");
         }
+        function toggleSearch() {
+            var searchWrapper = document.querySelector(".search-wrapper");
+            var searchInput = document.getElementById("ticket_id");
+            searchWrapper.classList.toggle("show-submit");
+            searchInput.classList.toggle("active");
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('toggleSearchBorder').addEventListener('click', toggleSearch);
+        });
         window.onclick = function(event) {
             if (!event.target.matches('.profile-button')) {
                 var dropdowns = document.getElementsByClassName("profile-dropdown-content");
@@ -170,7 +219,7 @@
                 ☰
             </button>
             <a href="{{ url('home') }}" >
-            <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
+                <img src="{{ asset('img/logotpk.png') }}" alt="Logo IPC" class="ml-4">
             </a>
         </div>
         <div class="profile-dropdown" id="profileDropdown">
@@ -202,25 +251,43 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <h1 class="text-4xl font-bold text-gray-900 mb-6 text-center">History Tickets</h1>
+            <h1 class="text-4xl font-bold text-gray-900 mb-6 text-center">History of Tickets</h1>
+
+            <!-- Search Form -->
+            <div class="relative mb-4 search-wrapper">
+                <form action="{{ route('history') }}" method="GET" id="searchForm">
+                    <input type="text" id="ticket_id" name="ticket_id" class="search-input" placeholder="Enter Ticket ID" value="{{ request('ticket_id') }}">
+                    <button type="submit" class="submit-button">Search</button>
+                    <button type="button" id="toggleSearchBorder" class="search-icon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M13 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0z"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- History Table -->
             <table>
                 <thead>
                     <tr>
-                        <th>Ticket ID</th>
-                        <th>Activity</th>
+                        <th><a href="{{ route('history', ['sort' => 'ticket_id']) }}">Ticket ID</a></th>
+                        <th><a href="{{ route('history', ['sort' => 'activity']) }}">Activity</a></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
-
-                            <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
-                                <td>{{ 'REQ'. $item->ticket_id }}</td>
-                                <td>{{ $item->activity }}</td>
-                            </tr>
-                
-                    @endforeach
+                    @forelse ($data as $item)
+                        <tr class="{{ $loop->iteration % 2 == 0 ? 'even' : 'odd' }}">
+                            <td>{{ 'REQ'. $item->ticket_id }}</td>
+                            <td>{{ $item->activity }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="text-center py-4">No records found.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+
         </div>
     </div>
 </body>

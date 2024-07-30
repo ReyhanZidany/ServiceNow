@@ -111,6 +111,7 @@
         .ticket-container {
             max-width: 900px;
             margin: 0 auto;
+            margin-top: 15px;
             background-color: #f7f7f7;
             padding: 20px;
             border-radius: 10px;

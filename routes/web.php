@@ -18,6 +18,7 @@ Route::get('/tickets/{id}/edit', [AuthController::class, 'editTicket'])->name('t
 Route::put('/tickets/{id}', [AuthController::class, 'updateTicket'])->name('tickets.update');
 Route::post('/profile/upload', [AuthController::class, 'uploadProfilePicture'])->name('profile.upload');
 Route::get('/tickets/{id}', [AuthController::class, 'view'])->name('tickets.view');
+Route::get('/history', [AuthController::class, 'search'])->name('history');
 
 
 Route::middleware('guest')->group(function(){

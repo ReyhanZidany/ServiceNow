@@ -243,6 +243,28 @@ class AuthController extends Controller
     return view('ticketview', compact('ticket'));
     }
 
+    public function search(Request $request)
+    {
+        $query = History::query();
+
+        // Handle search by ticket_id
+        if ($request->has('ticket_id') && $request->input('ticket_id') != '') {
+            $ticketId = $request->input('ticket_id');
+            $query->where('ticket_id', $ticketId);
+        }
+
+        // Optional: Handle sorting
+        if ($request->has('sort')) {
+            $sort = $request->input('sort');
+            $query->orderBy($sort);
+        }
+
+        // Fetch the data with pagination
+        $data = $query->get();
+
+        return view('history', compact('data'));
+    }
+
 
     public function logout()
     {

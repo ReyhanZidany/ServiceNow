@@ -210,7 +210,7 @@
             <div class="tickets-row">
                 <a href="{{ route('tickets') }}" class="ticket">
                     <h1 class="unsolved-tickets">{{ $unsolvedTickets }}</h1>
-                    <p>Tickets Unresolved</p>
+                    <p>Tickets Unsolved</p>
                 </a>
                 <a href="{{ route('tickets') }}" class="ticket">
                     <h1 class="solved-tickets">{{ $solvedTickets }}</h1>
