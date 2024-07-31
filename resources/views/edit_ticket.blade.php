@@ -34,6 +34,14 @@
         .profile-dropdown-content a:hover {
             background-color: #ddd;
         }
+        .ticket-image {
+            max-width: 300px; /* Sesuaikan ukuran sesuai kebutuhan */
+            height: auto; /* Menjaga proporsi gambar */
+            display: block;
+            margin: 10px 0; /* Memberikan ruang di sekitar gambar */
+            border-radius: 5px; /* Opsional: membuat sudut gambar melengkung */
+        }
+
         .profile-dropdown.open .profile-dropdown-content {
             display: block;
         }
@@ -111,7 +119,7 @@
                 @if($ticket->image)
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Image</label>
-                        <img src="{{ asset('storage/' . $ticket->image) }}" alt="Ticket Image" class="w-full h-auto rounded-lg border-2 border-gray-300">
+                        <img src="{{ asset('storage/' . $ticket->image) }}" alt="Ticket Image" class="ticket-image">
                     </div>
                 @endif
                 

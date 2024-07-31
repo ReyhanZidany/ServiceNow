@@ -108,6 +108,14 @@
         .main-content.shifted {
             margin-left: 200px;
         }
+        .ticket-image {
+            max-width: 300px; /* Sesuaikan ukuran sesuai kebutuhan */
+            height: auto; /* Menjaga proporsi gambar */
+            display: block;
+            margin: 10px 0; /* Memberikan ruang di sekitar gambar */
+            border-radius: 5px; /* Opsional: membuat sudut gambar melengkung */
+        }
+
         .form-container {
             max-width: 900px;
             margin: 0 auto;
@@ -218,7 +226,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Upload Image</label>
+                    <label for="image" class="ticket-image">Upload Image</label>
                     <input type="file" id="image" name="image" class="border border-gray-300 p-2 w-full rounded" accept="image/*">
                 </div>
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>

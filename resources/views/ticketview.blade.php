@@ -141,6 +141,14 @@
             color: #fff;
             font-weight: bold;
         }
+        .ticket-image {
+            max-width: 300px; /* Sesuaikan ukuran sesuai kebutuhan */
+            height: auto; /* Menjaga proporsi gambar */
+            display: block;
+            margin: 10px 0; /* Memberikan ruang di sekitar gambar */
+            border-radius: 5px; /* Opsional: membuat sudut gambar melengkung */
+        }
+
         .status.solved {
             color: #10b981;
         }
@@ -216,11 +224,13 @@
             </div>
             <div class="ticket-detail">
                 <p><strong>Ticket ID:</strong> {{ 'REQ'. $ticket->id }}</p>
-                <p><strong>Title:</strong> {{ $ticket->title }}</p>
+                <p><strong>Problem Statement:</strong> {{ $ticket->title }}</p>
                 <p><strong>Description:</strong> {{ $ticket->description }}</p>
                 <p><strong>Created At:</strong> {{ $ticket->createdat }}</p>
                 <p><strong>Assigned to User ID:</strong> {{ $ticket->user_id }}</p>
-                <p><strong>Image:</strong> <img src="{{ asset('storage/' . $ticket->image) }}" alt="Ticket Image" class="max-w-full h-auto"></p>
+                @if($ticket->image)
+                <p><strong>Image:</strong> <img src="{{ asset('storage/' . $ticket->image) }}" alt="Ticket Image" class="ticket-image"></p>
+                @endif
                 <p><strong>Status:</strong>
                     @if ($ticket->solvedat)
                         <span class="status solved">Solved</span>

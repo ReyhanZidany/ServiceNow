@@ -7,12 +7,7 @@ use App\Http\Controllers\GoodHomeController;
 use App\Http\Controllers\GoodTicketController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/profile', [AuthController::class, 'show'])->name('profile');
-Route::post('/profile/upload', [AuthController::class, 'uploadProfilePicture'])->name('profile.upload');
 Route::get('/history', [AuthController::class, 'search'])->name('history');
-
-// routes/web.php
-
 Route::get('/register-pic', [AuthController::class, 'showRegistrationForm'])->name('register.pic');
 Route::post('/register-pic', [AuthController::class, 'registerPic']);
 
@@ -24,6 +19,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [GoodHomeController::class, 'index'])->name('home');
+    Route::get('/profile', [GoodAuthController::class, 'show'])->name('profile');
+    Route::post('/profile/upload', [GoodAuthController::class, 'uploadProfilePicture'])->name('profile.upload');
     Route::get('/logout', [GoodAuthController::class, 'logout'])->name('logout');
 
     Route::prefix('tickets')
@@ -40,7 +37,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/history', [GoodHistoryController::class, 'tickethistory'])->name('history');
 
 });
-
-// versi saya dan panjul
-// Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [AuthController::class, 'processlogin'])->name('login.process');
