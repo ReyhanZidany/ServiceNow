@@ -8,6 +8,7 @@ use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+
 class TicketService
 {
     public function store(TicketStoreDto $dto)
@@ -18,11 +19,18 @@ class TicketService
         // }
         $now = Carbon::now();
 
+        $imagePath = null;
+        if ($dto->image) {
+            $imagePath = $dto->image->store('ticket_images', 'public');
+        }
+
+
         Ticket::create([
             'title' => $dto->title,
             'description' => $dto->description,
             'user_id' => $dto->user_id,
             'createdat' => $now,
+            'image' => $imagePath,
             'solvedat' => null,
             'solutiondesc' => null,
         ])

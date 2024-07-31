@@ -220,6 +220,7 @@
                 <p><strong>Description:</strong> {{ $ticket->description }}</p>
                 <p><strong>Created At:</strong> {{ $ticket->createdat }}</p>
                 <p><strong>Assigned to User ID:</strong> {{ $ticket->user_id }}</p>
+                <p><strong>Image:</strong> <img src="{{ asset('storage/' . $ticket->image) }}" alt="Ticket Image" class="max-w-full h-auto"></p>
                 <p><strong>Status:</strong>
                     @if ($ticket->solvedat)
                         <span class="status solved">Solved</span>

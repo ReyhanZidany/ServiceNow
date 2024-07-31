@@ -108,6 +108,13 @@
                     <textarea name="description" id="description" class="w-full border-2 border-gray-300 rounded-lg p-3 bg-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>{{ old('description', $ticket->description) }}</textarea>
                 </div>
 
+                @if($ticket->image)
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Image</label>
+                        <img src="{{ asset('storage/' . $ticket->image) }}" alt="Ticket Image" class="w-full h-auto rounded-lg border-2 border-gray-300">
+                    </div>
+                @endif
+                
                 <!-- Solution Description -->
                 <div class="mb-4">
                     <label for="solution" class="block text-gray-700 text-sm font-bold mb-2">Solution Description</label>
