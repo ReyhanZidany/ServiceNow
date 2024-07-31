@@ -2,15 +2,15 @@
 
 namespace App\Http\Services;
 
-
 use App\Http\Dto\TicketStoreDto;
 use App\Http\Dto\TicketUpdateDto;
 use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class TicketService{
-    function store(TicketStoreDto $dto) 
+class TicketService
+{
+    public function store(TicketStoreDto $dto)
     {
         // if ($request->hasFile('image')) {
         //     $path = $request->file('image')->store('ticket_images', 'public');
@@ -20,41 +20,41 @@ class TicketService{
 
         Ticket::create([
             'title' => $dto->title,
-            'description' =>  $dto->description,
-            'user_id' =>  $dto->user_id,
+            'description' => $dto->description,
+            'user_id' => $dto->user_id,
             'createdat' => $now,
             'solvedat' => null,
             'solutiondesc' => null,
         ])
-        ->histories()->create([
+            ->histories()->create([
             'activity' => sprintf(
                 'ticket created by %s on %s with title %s assigned to user id ( %s )',
-                Auth::user()->role, 
+                Auth::user()->role,
                 $now,
                 $dto->title,
                 $dto->user_id,
-            )
+            ),
         ]);
     }
 
-    function update(TicketUpdateDto $dto, Ticket $ticket) 
+    public function update(TicketUpdateDto $dto, Ticket $ticket)
     {
         $now = Carbon::now();
 
         $ticket->update([
             'solvedat' => $now,
             'solutiondesc' => $dto->solution,
-            'status' => 'closed', 
+            'status' => 'closed',
         ]);
 
         $ticket->histories()->create([
             'ticket_id' => $ticket['id'],
             'activity' => sprintf(
-            'Ticket resolved by %s on %s with solution "%s"',
-            Auth::user()->role,
-            $now->toDateTimeString(),
-            $dto->solution,
-            )
+                'Ticket resolved by %s on %s with solution "%s"',
+                Auth::user()->role,
+                $now->toDateTimeString(),
+                $dto->solution,
+            ),
         ]);
     }
 }

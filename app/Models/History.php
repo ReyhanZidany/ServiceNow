@@ -12,6 +12,6 @@ class History extends Model
     protected $fillable = [
         'ticket_id',
         'activity',
-        
+
     ];
 }

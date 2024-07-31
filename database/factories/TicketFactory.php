@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ticket>
@@ -20,7 +20,7 @@ class TicketFactory extends Factory
         return [
             'title' => fake()->title(),
             'description' => fake()->text(),
-            'user_id' => rand(2,3),
+            'user_id' => rand(2, 3),
             'createdat' => Carbon::now(),
             'solvedat' => Carbon::now(),
             'solutiondesc' => fake()->title(),

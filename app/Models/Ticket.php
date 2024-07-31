@@ -13,6 +13,7 @@ class Ticket extends Model
     use SoftDeletes;
 
     public $timestamps = false;
+
     protected $guarded = ['id'];
 
     protected $fillable = [
@@ -25,7 +26,7 @@ class Ticket extends Model
         'solutiondesc',
         'status',
     ];
-    
+
     protected $dates = ['createdat', 'solvedat', 'deleted_at'];
 
     // Relationship to the user who created the ticket
@@ -39,7 +40,8 @@ class Ticket extends Model
         return $this->belongsTo(User::class, 'resolved_by');
     }
 
-    function histories():HasMany{
+    public function histories(): HasMany
+    {
         return $this->hasMany(History::class);
     }
 }
