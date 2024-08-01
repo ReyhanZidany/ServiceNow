@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/create', [GoodTicketController::class, 'create'])->name('create');
             Route::get('/{ticket}', [GoodTicketController::class, 'detail'])->name('detail');
             Route::post('/', [GoodTicketController::class, 'store'])->name('store');
-            Route::get('/{ticket}/edit', [GoodTicketController::class, 'edit'])->name('edit');
+            Route::get('/{ticket}/solve', [GoodTicketController::class, 'solve'])->name('solve');
             Route::put('/{ticket}', [GoodTicketController::class, 'update'])->name('update');
         });
 

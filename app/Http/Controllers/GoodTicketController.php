@@ -38,9 +38,9 @@ class GoodTicketController extends Controller
         return view('ticketview', ['ticket' => $ticket]);
     }
 
-    public function edit(Ticket $ticket)
+    public function solve(Ticket $ticket)
     {
-        return view('edit_ticket', ['ticket' => $ticket]);
+        return view('solve_ticket', ['ticket' => $ticket]);
     }
 
     public function store(TicketStoreRequest $request)

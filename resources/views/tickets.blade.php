@@ -253,7 +253,7 @@
                                             <td class="px-4 py-2">{{ $item->createdat }}</td>
                                             <td class="px-4 py-2 text-red-500">Unsolved</td>
                                             <td class="px-4 py-2">
-                                                <a href="{{ route('tickets.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700">Solve Incident</a>
+                                                <a href="{{ route('tickets.solve', $item->id) }}" class="text-blue-500 hover:text-blue-700">Solve Incident</a>
                                             </td>
                                         </tr>
                                     @endif
