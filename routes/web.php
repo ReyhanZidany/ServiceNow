@@ -7,9 +7,6 @@ use App\Http\Controllers\GoodHomeController;
 use App\Http\Controllers\GoodTicketController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/history', [AuthController::class, 'search'])->name('history');
-Route::get('/register-pic', [AuthController::class, 'showRegistrationForm'])->name('register.pic');
-Route::post('/register-pic', [AuthController::class, 'registerPic']);
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [GoodAuthController::class, 'index'])->name('login');

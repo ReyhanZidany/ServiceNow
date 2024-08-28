@@ -18,33 +18,31 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'name' => 'servicedesk',
-            'email' => 'panjul@gmail.com',
+            'email' => 'servicedesk@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'servicedesk'
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'PIC 1',
-            'email' => 'rehan@gmail.com',
+            'email' => 'pic1@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'PIC 1'
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'PIC 2',
-            'email' => 'yamal@gmail.com',
+            'email' => 'pic2@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'PIC 2'
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'PIC 3',
-            'email' => 'abc@gmail.com',
+            'email' => 'pic3@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'PIC 3'
         ]);
 
-        // ini_set('memory_limit', '3G');
-        // \App\Models\Ticket::factory(500000)->create();
     }
 }

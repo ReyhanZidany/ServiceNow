@@ -253,19 +253,6 @@
             @endif
             <h1 class="text-4xl font-bold text-gray-900 mb-6 text-center">History of Tickets</h1>
 
-            <!-- Search Form -->
-            <div class="relative mb-4 search-wrapper">
-                <form action="{{ route('history') }}" method="GET" id="searchForm">
-                    <input type="text" id="ticket_id" name="ticket_id" class="search-input" placeholder="Enter Ticket ID" value="{{ request('ticket_id') }}">
-                    <button type="submit" class="submit-button">Search</button>
-                    <button type="button" id="toggleSearchBorder" class="search-icon">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M13 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0z"></path>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-
             <!-- History Table -->
             <table>
                 <thead>
