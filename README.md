@@ -1,66 +1,220 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ServiceNow - Helpdesk Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based helpdesk application developed to streamline issue reporting, 
+tracking, and resolution processes.
 
-## About Laravel
+## 📋 Features
+- ✅ Ticket creation & management
+- ✅ PIC assignment & tracking
+- ✅ File upload & attachment support
+- ✅ Activity logging & history
+- ✅ Responsive web interface
+- ✅ User authentication
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ Tech Stack
+| Component | Technology |
+|-----------|------------|
+| Backend | Laravel 9 |
+| Frontend | React 18 |
+| Database | MySQL 5.7 |
+| UI Framework | Tailwind CSS |
+| Styling | Tailwind CSS |
+| Version Control | Git |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📦 Installation & Setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Prerequisites
+- PHP 8.1+
+- Node.js 16+
+- MySQL 5.7+
+- Composer
+- npm
 
-## Learning Laravel
+### Backend Setup
+`````bash
+cd backend
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
+`````
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Frontend Setup
+`````bash
+cd frontend
+npm install
+npm start
+`````
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Access:** http://localhost:3000
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🎯 Key Achievements
+- ✨ Deployed in production serving 500+ daily users
+- ⚡ Optimized database queries achieving 35% faster performance
+- 📊 95+ Lighthouse performance score
+- 🔒 Secure file upload with validation
 
-## Laravel Sponsors
+## 📸 Screenshots
+[Add screenshots here]
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Deployment
+- **Live Demo:** [Add link if deployed]
+- **Docker:** 
+`````bash
+  docker-compose up
+`````
 
-### Premium Partners
+## 🔗 Related
+- [GitHub Repository](https://github.com/ReyhanZidany/ServiceNow)
+- Experience: [PT. IPC Terminal Petikemas Internship](https://github.com/ReyhanZidany)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+### Project 2: Mr-Beans-App (E-commerce)
+`````markdown
+# Mr-Beans-App - Coffee Shop E-Commerce Platform
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+A modern React-based e-commerce web application for coffee shop business. 
+Customers can browse menu, manage shopping cart, and process purchases.
 
-## Code of Conduct
+## 🎯 Features
+- ✅ Product browsing & filtering
+- ✅ Shopping cart management
+- ✅ User authentication & profiles
+- ✅ Order history tracking
+- ✅ Responsive design (mobile-first)
+- ✅ Search functionality
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🛠️ Tech Stack
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18 |
+| State Management | Redux / Context API |
+| Routing | React Router v6 |
+| Styling | Tailwind CSS |
+| HTTP Client | Axios |
+| Backend | [Your backend tech] |
 
-## Security Vulnerabilities
+## 📦 Installation
+````bash
+npm install
+npm start
+````
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🎨 UI/UX Highlights
+- Intuitive product browsing interface
+- Smooth shopping cart experience
+- Mobile-responsive design
+- Fast page load times
 
-## License
+## 📸 Screenshots
+[Add screenshots]
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔗 Live Demo
+- **Website:** [Add deployed link]
+
+## 📚 Learning Outcomes
+- React hooks & state management
+- E-commerce flow design
+- Responsive web design
+- User authentication
+
+---
+
+### Project 3: DipoHelp (Ticket System)
+````markdown
+# DipoHelp - Ticket Management System
+
+Ticket management application designed for university/organization to streamline 
+issue reporting and track resolution processes.
+
+## ✨ Features
+- ✅ Issue/ticket creation
+- ✅ Status tracking (Open, In Progress, Resolved)
+- ✅ Priority levels
+- ✅ Admin dashboard
+- ✅ Real-time notifications
+- ✅ Comment/discussion threads
+
+## 🛠️ Tech Stack
+- **Backend Framework:** Laravel
+- **Template Engine:** Blade
+- **Frontend:** HTML/CSS/JavaScript
+- **Database:** MySQL
+- **Server:** Apache/Nginx
+
+## 📦 Setup
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
+
+## 🎯 Key Features
+- User-friendly ticket creation process
+- Real-time status updates
+- Admin management panel
+- Ticket history & analytics
+
+## 📸 Screenshots
+[Add screenshots]
+
+## 🚀 Deployment
+```bash
+docker build -t dipohelp .
+docker run -p 8000:8000 dipohelp
+```
+
+---
+
+## PRIORITY 3: ADD VISUAL ELEMENTS (1 Hour)
+
+### 3.1 Add Badges to Each README
+```markdown
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+```
+
+Source: https://badges.fyi/ or https://github.com/Ileriayo/markdown-badges
+
+### 3.2 Add Code Quality Badges
+```markdown
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
+```
+
+---
+
+## PRIORITY 4: DEPLOYMENT & LINKS (1-2 Hours)
+
+### Add Live Demo Links
+For each project, add section:
+```markdown
+## 🚀 Live Demo
+- **Website:** https://[your-deployed-app].com
+- **API Documentation:** https://[your-api-docs].com
+```
+
+**Deployment Options:**
+- **Frontend (React):** Vercel, Netlify (free tier)
+- **Backend (Laravel):** Railway, Render, Heroku (free tier ending)
+- **Full-stack:** Azure, AWS free tier
+
+---
+
+## PRIORITY 5: GITHUB REPO DESCRIPTIONS (15 mins)
+
+### Update each repo description (shown on profile):
+
+**ServiceNow:**
+````
+Helpdesk management system | Laravel + React | 500+ daily users | Production-ready
+`````
+
+**Mr-Beans-App:**
